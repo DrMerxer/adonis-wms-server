@@ -1,0 +1,9 @@
+{
+   "sqltools.connections": [
+      {
+         "database": "/Users/abnernat/Documents/Projects/WMS/adonis-wms-server/database/adonis.sqlite",
+         "dialect": "SQLite",
+         "name": "local_sqlite"
+      }
+   ]
+}
