@@ -9,7 +9,7 @@ class FinanceSchema extends Schema {
       table.increments()
       table.timestamps()
       table.string('title').notNullable().unique()
-      table.Integer('balance').notNullable().defaultTo(0)
+      table.integer('balance').notNullable().defaultTo(0)
     })
   }
 

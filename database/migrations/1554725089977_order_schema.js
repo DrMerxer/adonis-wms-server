@@ -6,18 +6,19 @@ const Schema = use('Schema')
 class OrderSchema extends Schema {
   up () {
     this.create('orders', (table) => {
-      table.increments('orderid')
+      table.increments()
       table.timestamps()
 
       //table.integer('orderid').notNullable().unique()
       //type: purchase, sell, return/change
       table.string('type').notNullable()
-      table.json('detail').notNullable().defaultTo({
-            'merchants' : [],
-            'barcode' : [],
-            'amount' : [],
-            'value' : 0
-      })
+      table.json('detail').notNullable()
+      // .defaultTo({
+      //       'merchants' : [],
+      //       'barcode' : [],
+      //       'amount' : [],
+      //       'value' : 0
+      // })
     })
   }
 

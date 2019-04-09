@@ -6,16 +6,17 @@ const Schema = use('Schema')
 class ShipSchema extends Schema {
   up () {
     this.create('ships', (table) => {
-      table.increments('shipid')
+      table.increments()
       table.timestamps()
       table.string('action').notNullable()
       table.integer('type')
       // 0. Buy-in 1. Normal shipping 2. Return/Exchange
-      table.json('detail').defaultTo({
-         'barcode' : [],
-         'expressid' : [],
-         'addr' : ''
-      })
+      table.json('detail')
+      // .defaultTo({
+      //    'barcode' : [],
+      //    'expressid' : [],
+      //    'addr' : ''
+      // })
     })
   }
 

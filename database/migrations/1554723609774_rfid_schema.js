@@ -6,7 +6,7 @@ const Schema = use('Schema')
 class RfidSchema extends Schema {
   up () {
     this.create('rfids', (table) => {
-      table.increments('tagid')
+      table.increments()
       table.timestamps()
 
       //table.integer('tagid',255).notNullable().unique()

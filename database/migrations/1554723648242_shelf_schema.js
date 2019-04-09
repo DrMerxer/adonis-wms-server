@@ -6,7 +6,7 @@ const Schema = use('Schema')
 class ShelfSchema extends Schema {
   up () {
     this.create('shelves', (table) => {
-      table.increments('shelfid')
+      table.increments()
       table.timestamps()
 
       //table.integer('shelfid').notNullable().unique()
