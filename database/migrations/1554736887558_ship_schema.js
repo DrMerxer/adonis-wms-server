@@ -10,13 +10,10 @@ class ShipSchema extends Schema {
       table.timestamps()
       table.string('action').notNullable()
       table.integer('type')
-      // 0. Buy-in 1. Normal shipping 2. Return/Exchange
+      // Type: 0. Buy-in 1. Normal shipping 2. Return/Exchange
       table.json('detail')
-      // .defaultTo({
-      //    'barcode' : [],
-      //    'expressid' : [],
-      //    'addr' : ''
-      // })
+      table.string('expressid')
+      table.string('addr')
     })
   }
 

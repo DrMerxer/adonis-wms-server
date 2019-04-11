@@ -19,12 +19,22 @@ class UserSeeder {
         {
            username:'张三',
            email:'adobe@photoshop.com',
-           birth:'97-12-11 06:00:00',
+           birth:'97-12-11',
            gender:true,
            isdel:false,
            last_login:'14-01-23 07:34:22',
            level:3,
            password:'soifjaosifjoas'
+        },
+        {
+         username:'王六',
+         email:'bukaopu@photoshop.com',
+         birth:'95-2-1',
+         gender:true,
+         isdel:false,
+         last_login:'16-01-23 23:32:01',
+         level:3,
+         password:'jeremyclarkson233'
         }
      ]
 

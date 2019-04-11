@@ -11,7 +11,6 @@ class ShelfSchema extends Schema {
 
       //table.integer('shelfid').notNullable().unique()
       table.integer('size').notNullable()
-      table.string('merchant').notNullable()
       table.string('alias').notNullable()
       table.integer('capacity').notNullable()
     })
