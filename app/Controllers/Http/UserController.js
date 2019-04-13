@@ -1,9 +1,10 @@
 'use strict'
-
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const User = use('App/Models/User')
+const { validate } = use('Validator')
 /**
  * Resourceful controller for interacting with users
  */
@@ -42,8 +43,38 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
-  }
+   async store({ request, response ,session }) {
+      const rules = {
+         username: 'required|min:2|max:20',
+         password: 'required|min:8|max:20',
+         email: 'required|email|unique:users',
+         gender: 'required|integer',
+         level: 'required|min:1|max:3',
+         birth: 'required|date'
+      }
+
+      const validation = await validate(request.all(), rules)
+
+      if (validation.fails()){
+         session
+            .withErrors(validation.messages())
+            .flashAll()
+         return response.redirect('back')
+      }
+      const newUser = request.only(
+         [
+            'username',
+            'email',
+            'birth',
+            'gender',
+            'level',
+            'password'
+         ])
+      console.log(newUser)
+      const user = await User.create(newUser)
+
+      return user
+   }
 
   /**
    * Display a single user.

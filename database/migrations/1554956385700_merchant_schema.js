@@ -8,6 +8,12 @@ class MerchantSchema extends Schema {
     this.create('merchants', (table) => {
       table.increments()
       table.timestamps()
+
+      table.string('name').notNullable()
+      table.integer('order_id').notNullable().unsigned()
+      table.foreign('order_id').references('orders.id')
+      table.string('attr')
+      table.string('barcode').unique()
     })
   }
 

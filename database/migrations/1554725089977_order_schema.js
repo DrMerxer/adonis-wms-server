@@ -13,12 +13,6 @@ class OrderSchema extends Schema {
       //type: purchase, sell, return/change
       table.string('type').notNullable()
       table.json('detail').notNullable()
-      // .defaultTo({
-      //       'merchants' : [],
-      //       'barcode' : [],
-      //       'amount' : [],
-      //       'value' : 0
-      // })
     })
   }
 

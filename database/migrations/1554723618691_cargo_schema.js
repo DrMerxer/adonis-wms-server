@@ -10,7 +10,8 @@ class CargoSchema extends Schema {
       table.timestamps()
 
       //table.integer('cargoid').notNullable().unique()
-      table.string('barcode', 255).notNullable()
+      table.string('barcode').notNullable()
+      table.foreign('barcode').references('merchants.barcode')
       table.integer('size').notNullable()
       // table.foreign(['tagid','shelfid'])
       //    .references(['id','id'])
