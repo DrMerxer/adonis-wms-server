@@ -18,4 +18,11 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
+Route
+  .get('register', 'UserController.create')
+  .as('signup')
+
+Route
+  .get('users/create', ({ response }) => response.route('signup'))
+
 Route.resource('users', 'UserController')
