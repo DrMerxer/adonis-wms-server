@@ -1,6 +1,10 @@
 <div class="form-group">
    <label for="{{name}}">{{label}}</label>
-   <input type="{{ type || 'text' }}" class="form-control  {{ hasErrorFor(name) ? 'is-invalid' : ''}}"
-     value="{{ old('username', '') }}" name="email" placeholder="username@website.com"
-     {{ elIf('<div class="invalid-feedback">$self</div>', getErrorFor('email'), hasErrorFor('email')) }}>
- </div>
+   <input 
+     type="{{ type || 'text' }}" 
+     class="form-control  {{ hasErrorFor(name) ? 'is-invalid' : ''}}"
+     value="{{ old(name, '') }}" 
+     name= "{{ name }}"
+     placeholder="{{ placeholder }}"
+     {{ elIf('<div class="invalid-feedback">$self</div>', getErrorFor(name), hasErrorFor(name)) }}>
+</div>

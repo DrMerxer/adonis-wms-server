@@ -23,6 +23,14 @@ Route
   .as('signup')
 
 Route
+  .get('login', 'AuthController.login')
+  .as('login')
+
+Route
+  .post('auth', 'AuthController.auth')
+  .as('auth')
+
+Route
   .get('users/create', ({ response }) => response.route('signup'))
 
 Route.resource('users', 'UserController')

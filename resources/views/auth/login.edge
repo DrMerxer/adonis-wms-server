@@ -1,0 +1,38 @@
+@layout('layouts.main')
+@section('content')
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card my-5">
+      <div class="card-body">
+        <div class="container">
+          <h1 class="my-5 dispay-4">Login</h1>
+          <form action="{{ route('auth')}}" method="POST">
+            @!component('components.form.input', {
+               name: 'username',
+               label: 'Username',
+               placeholder: 'Enter your username',
+               getErrorFor,
+               hasErrorFor,
+               old
+            })
+            @!component('components.form.input', {
+               name: 'passwrod ',
+               label: 'Password',
+               placeholder: 'Enter your password',
+               getErrorFor,
+               hasErrorFor,
+               old
+            })
+            
+            {{-- {{ csrfField() }} --}}
+            <button class="btn btn-primary btn-block my-4" type="submit">Login</button>
+          </form>
+          <p class="card-text">
+             <small class="text-muted">New comer? Create an account!</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

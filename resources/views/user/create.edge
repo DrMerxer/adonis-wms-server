@@ -7,24 +7,46 @@
         <div class="container">
           <h1 class="my-5 dispay-4">Register</h1>
           <form action="{{ route('UserController.store')}}" method="POST">
-            <div class="form-group">
-              <label for="username">username</label>
-              <input type="text" class="form-control {{ hasErrorFor('username') ? 'is-invalid' : ''}}" name="username"
-                value="{{ old('username', '') }}" placeholder="Real Name(identical to ID)">
-              {{ elIf('<div class="invalid-feedback">$self</div>', getErrorFor('username'), hasErrorFor('username')) }}
-            </div>
-            <div class="form-group">
-              <label for="email">email</label>
-              <input type="email" class="form-control  {{ hasErrorFor('email') ? 'is-invalid' : ''}}"
-                value="{{ old('username', '') }}" name="email" placeholder="username@website.com"
-                {{ elIf('<div class="invalid-feedback">$self</div>', getErrorFor('email'), hasErrorFor('email')) }}>
-            </div>
-            <div class="form-group date">
-              <label for="birth">birth</label>
-              <input type="date" class="form-control {{ hasErrorFor('birth') ? 'is-invalid' : ''}}" name="birth"
-                value="1995-1-1" min="1900-1-1" max="2018-1-1"
-                {{ elIf('<div class="invalid-feedback">$self</div>', getErrorFor('birth'), hasErrorFor('birth')) }}>
-            </div>
+            @!component('components.form.input', {
+               name: 'username',
+               label: 'Username',
+               placeholder: 'Pick your username',
+               getErrorFor,
+               hasErrorFor,
+               old
+            })
+            @!component('components.form.input', {
+               name: 'passwrod ',
+               label: 'Password',
+               placeholder: '8~20 digits of number and letters(special letters are forbidden)',
+               getErrorFor,
+               hasErrorFor,
+               old
+            })
+            @!component('components.form.input', {
+               name: 'email',
+               label: 'Email',
+               placeholder: 'forexample@target.com',
+               getErrorFor,
+               hasErrorFor,
+               old
+            })
+            @!component('components.form.input', {
+               name: 'username',
+               label: 'Username',
+               placeholder: 'Pick your username',
+               getErrorFor,
+               hasErrorFor,
+               old
+            })
+            @!component('components.form.input', {
+               name: 'birth',
+               label: 'Birth date',
+               placeholder: '1995-1-1',
+               getErrorFor,
+               hasErrorFor,
+               old
+            })
             <div class="form-group">
               <label for="gender">gender</label>
               <div>
@@ -39,13 +61,6 @@
                 <input type="radio" name="level" value="2"> Level 2 <br>
                 <input type="radio" name="level" value="3"> Level 3 <br>
               </div>
-
-            </div>
-            <div class="form-group">
-              <label for="password">password</label>
-              <input type="password" class="form-control {{ hasErrorFor('birth') ? 'is-invalid' : ''}}" name="password"
-                value="{{ old('birth', '') }}" placeholder="8~20 digits of letter/number"
-                {{ elIf('<div class="invalid-feedback">$self</div>', getErrorFor('password'), hasErrorFor('password')) }}>
             </div>
             {{-- {{ csrfField() }} --}}
             <button class="btn btn-primary btn-block my-4" type="submit">Create an account</button>
