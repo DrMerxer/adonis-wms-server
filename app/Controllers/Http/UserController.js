@@ -86,6 +86,10 @@ class UserController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+   
+   const user = await User.find(params.id)
+   console.log(user)
+     return user
   }
 
   /**
