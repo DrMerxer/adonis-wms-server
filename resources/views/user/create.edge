@@ -16,7 +16,8 @@
                old
             })
             @!component('components.form.input', {
-               name: 'passwrod ',
+               type: 'password',
+               name: 'password',
                label: 'Password',
                placeholder: '8~20 digits of number and letters(special letters are forbidden)',
                getErrorFor,
@@ -24,6 +25,7 @@
                old
             })
             @!component('components.form.input', {
+               type: 'email',
                name: 'email',
                label: 'Email',
                placeholder: 'forexample@target.com',
@@ -32,14 +34,7 @@
                old
             })
             @!component('components.form.input', {
-               name: 'username',
-               label: 'Username',
-               placeholder: 'Pick your username',
-               getErrorFor,
-               hasErrorFor,
-               old
-            })
-            @!component('components.form.input', {
+               type: 'date',
                name: 'birth',
                label: 'Birth date',
                placeholder: '1995-1-1',

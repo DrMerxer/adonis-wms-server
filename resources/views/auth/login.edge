@@ -8,15 +8,17 @@
           <h1 class="my-5 dispay-4">Login</h1>
           <form action="{{ route('auth')}}" method="POST">
             @!component('components.form.input', {
-               name: 'username',
-               label: 'Username',
-               placeholder: 'Enter your username',
+               type: 'text',
+               name: 'uid',
+               label: 'Work ID',
+               placeholder: 'Enter your Work ID',
                getErrorFor,
                hasErrorFor,
                old
             })
             @!component('components.form.input', {
-               name: 'passwrod ',
+               type: 'password',
+               name: 'password',
                label: 'Password',
                placeholder: 'Enter your password',
                getErrorFor,
@@ -28,7 +30,7 @@
             <button class="btn btn-primary btn-block my-4" type="submit">Login</button>
           </form>
           <p class="card-text">
-             <small class="text-muted">New comer? Create an account!</small>
+          <small class="text-muted" href="/login">New comer? <a href="{{ route('signup') }}">Create an accout!</a></small>
           </p>
         </div>
       </div>
