@@ -29,7 +29,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('UserController.show', {id: auth.user.id }) }}">Profile</a>
           <div class="dropdown-divider"></div>
-        <form action="{{ route('logout') }}" class="post">
+        <form action="{{ route('logout') }}" method="post">
           {{ csrfField() }}
           <button class="dropdown-item" type="submit"> Logout</button>
         </form>
