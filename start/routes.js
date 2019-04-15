@@ -31,6 +31,14 @@ Route
   .as('auth')
 
 Route
+  .get('home', 'HomeController.index')
+  .as('index')
+
+Route
+  .post('logout', 'AuthController.logout')
+  .as('logout')
+
+Route
   .get('users/create', ({ response }) => response.route('signup'))
 
 Route.resource('users', 'UserController')
