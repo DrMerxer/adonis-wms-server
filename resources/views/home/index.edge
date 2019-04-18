@@ -1,0 +1,24 @@
+@layout('layouts.main')
+@section('content')
+<div class="container" style="padding-top:5vh;">
+  @loggedIn
+  @if(auth.user.level == 3)
+  @!component('components.dashboards.admin')
+  @elseif(auth.user.level == 2)
+
+  @elseif(auth.user.level == 1)
+    
+  @else
+    
+  @endif
+@else
+<div class="row"><div class="col-md-12 text-center">
+  <p style="padding-top:30vh;">
+    <h1>
+      Please Login.
+    </h1>
+  </p>
+</div></div>
+@endloggedIn
+</div>
+@endsection

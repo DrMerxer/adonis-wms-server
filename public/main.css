@@ -3,3 +3,20 @@
    letter-spacing: 3px;
    font-weight: bold;
 }
+
+.dashboard-big{
+  font-size: 5vh;
+}
+
+.box-trans{
+  padding:10px;
+  background-origin:padding-box;
+  transition: 0.2s;
+}
+     
+
+.box-trans:hover {
+  transition: 0.2s ;
+  box-shadow: 0px 4px 20px rgba(70%,70%,70%,0.4);
+}
+

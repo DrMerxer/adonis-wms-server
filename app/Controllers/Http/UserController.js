@@ -73,7 +73,7 @@ class UserController {
       console.log(newUser)
       const user = await User.create(newUser)
 
-      return user
+      return response.redirect('/')
    }
 
   /**

@@ -17,7 +17,7 @@ class AuthController {
       return view.render('auth.login')
     }
 
-    return response.redirect('back')
+    return response.redirect('home')
   }
 
   async auth({ request, response, auth, session }) {
@@ -38,7 +38,7 @@ class AuthController {
     await auth.attempt(email, password)
 
     const user = await auth.getUser()
-    return response.route('UserController.show', { id: user.id })
+    return response.redirect('home')
   }
 }
 

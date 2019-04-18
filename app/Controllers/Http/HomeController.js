@@ -2,7 +2,7 @@
 
 class HomeController {
     async index ({ request, response, view }) {
-        return view.render('home')
+        return view.render('home.index')
     }
 }
 
