@@ -9,10 +9,10 @@ class OrderSchema extends Schema {
       table.increments()
       table.timestamps()
 
-      //table.integer('orderid').notNullable().unique()
-      //type: purchase, sell, return/change
-      table.string('type').notNullable()
-      table.json('detail').notNullable()
+      //status: arriving, in-stock, out-of-stock
+      table.integer('status').notNullable()
+      table.string('company').notNullable()
+
     })
   }
 

@@ -13,13 +13,12 @@ class CargoSchema extends Schema {
       table.string('barcode').notNullable()
       table.foreign('barcode').references('merchants.barcode')
       table.integer('size').notNullable()
-      // table.foreign(['tagid','shelfid'])
-      //    .references(['id','id'])
-      //    .on(['rfids','shelves'])
-      table.integer('shelf_id').unsigned()
+      table.boolean('ischecked').references('false')
+
+      table.integer('shelf_id').unsigned().notNullable()
       table.foreign('shelf_id').references('shelves.id')
       table.integer('status').notNullable() //status: 0. In Stock 1. Shipped Out 2. Returned/ForExchage
-      table.integer('order_id').unsigned()
+      table.integer('order_id').unsigned().notNullable()
       table.foreign('order_id').references('orders.id')
       table.integer('ship_id').unsigned()
       table.foreign('ship_id').references('ships.id')
