@@ -41,4 +41,8 @@ Route
 Route
   .get('users/create', ({ response }) => response.route('signup'))
 
+Route
+  .get('gun/arrive', 'GunController.arrive')
+
+
 Route.resource('users', 'UserController')

@@ -31,8 +31,8 @@ class UserController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
-      return view.render('user.create')
 
+    return view.render('user.create')
   }
 
   /**
