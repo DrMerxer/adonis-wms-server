@@ -14,8 +14,12 @@ class MerchantSchema extends Schema {
       table.foreign('order_id').references('orders.id')
       table.string('attr')
       table.string('barcode').unique()
-      table.integer('price')
+      table.integer('price').notNullable()
+      table.integer('cost').notNullable()
       table.integer('amount')
+      table.integer('arrived')
+      table.integer('checked')
+      table.integer('departured')
     })
   }
 

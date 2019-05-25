@@ -9,7 +9,7 @@ class WarehouseSchema extends Schema {
       table.increments()
       table.timestamps()
 
-      table.string('alias')
+      table.string('alias').unique()
     })
   }
 

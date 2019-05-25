@@ -10,7 +10,8 @@ class RfidSchema extends Schema {
       table.timestamps()
 
       //table.integer('tagid',255).notNullable().unique()
-      table.integer('status').notNullable().unique().defaultTo(0)
+      table.string('tagid',8).notNullable().unique()
+      table.integer('status').notNullable().defaultTo(0)
     })
   }
 
