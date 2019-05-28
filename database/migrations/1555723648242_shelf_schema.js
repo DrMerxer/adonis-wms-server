@@ -10,13 +10,18 @@ class ShelfSchema extends Schema {
       table.timestamps()
 
       //size means the cargo size it can contain
+      //0. small 1. medium 2. large
+      //Small for things like phones, tablets, etc
+      //Medium for things like a box of foods, box of milk, drinks and etc
+      //Large for things like big electronics like fridge, air conditioners, furnitures, etc
       table.integer('size').notNullable()
       table.string('alias').notNullable()
+      //Capacity: the amount of cargos that can actually fill with upper size
       table.integer('capacity').notNullable()
       //Type: 0.Normal Cargo 1. Fragile
       table.integer('type').notNullable()
-      table.integer('warehouseid').unsigned()
-      table.foreign('warehouseid').references('warehouses.id')
+      table.integer('warehouse_id').unsigned()
+      table.foreign('warehouse_id').references('warehouses.id')
     })
   }
 

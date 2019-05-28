@@ -13,6 +13,8 @@ class MerchantSchema extends Schema {
       table.integer('order_id').notNullable().unsigned()
       table.foreign('order_id').references('orders.id')
       table.string('attr')
+      //Size 0.small 1.medium 2.large
+      table.integer('size')
       table.string('barcode').unique()
       table.integer('price').notNullable()
       table.integer('cost').notNullable()

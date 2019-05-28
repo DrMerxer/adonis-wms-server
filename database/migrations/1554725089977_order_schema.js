@@ -13,10 +13,9 @@ class OrderSchema extends Schema {
       //type: 0.Buy-in 1.Sell-out 
       table.string('type').notNullable()
       //status: 0.on-going, 1.accomplished
-      table.integer('status').notNullable()
-      table.integer('trans_fee')
+      table.integer('status').notNullable().unsigned()
       table.string('company').notNullable()
-      table.string('exp_order').notNullable() //Express Order Serial
+      table.integer('amount').notNullable().unsigned()
     })
   }
 

@@ -33,8 +33,18 @@ class UserSeeder {
          gender:true,
          isdel:false,
          last_login:'16-01-23 23:32:01',
-         level:3,
+         level:2,
          password:'jeremyclarkson233'
+        },
+        {
+          username:'张伟',
+          email:'wayne@bruce.com',
+          birth:'93-3-2',
+          gender:false,
+          isdel:false,
+          last_login:'14-01-23 07:34:22',
+          level:1,
+          password:'thebestseasonever'
         }
      ]
 

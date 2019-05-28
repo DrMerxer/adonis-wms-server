@@ -10,18 +10,16 @@ class CargoSchema extends Schema {
       table.timestamps()
 
       //table.integer('cargoid').notNullable().unique()
-      table.string('barcode').notNullable()
+      table.string('barcode').notNullable().unique()
       table.foreign('barcode').references('merchants.barcode')
-      table.integer('size').notNullable()
       table.boolean('ischecked').references('false')
-
       table.integer('shelf_id').unsigned().notNullable()
       table.foreign('shelf_id').references('shelves.id')
-      table.integer('status').notNullable() //status: 0. In Stock 1. Shipped Out 2. Returned/ForExchage
+      table.integer('status').notNullable() //status: 0. Down 1. Up
       table.integer('order_id').unsigned().notNullable()
       table.foreign('order_id').references('orders.id')
-      table.integer('ship_id').unsigned()
-      table.foreign('ship_id').references('ships.id')
+      table.integer('tag_id').unsigned().notNullable()
+      table.foreign('tag_id').references('rfids.id')
       
     })
   }

@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| CargoSeeder
+| WarehouseSeeder
 |--------------------------------------------------------------------------
 |
 | Make use of the Factory instance to seed database with dummy data or
@@ -12,15 +12,18 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
-
-class CargoSeeder {
+const Warehouse = use('App/Models/Warehouse')
+class WarehouseSeeder {
   async run () {
-     const cargos = [
-        {
-           
-        }
-     ]
+    const warehouses = [
+      {
+        "alias":"Bermingham",
+        "balance":100000
+      }
+    ]
+
+    Warehouse.createMany(warehouses)
   }
 }
 
-module.exports = CargoSeeder
+module.exports = WarehouseSeeder

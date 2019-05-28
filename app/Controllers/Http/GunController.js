@@ -30,9 +30,11 @@ class GunController {
       return response.json({"type":"error","content":"BarcodeNotFound"})
     }
 
-    const cMerchant = await Merchant.findByOrFail('barcode',barcode)
-    console.log(cMerchant)
+    const nMerchant = await Merchant.findByOrFail('barcode',barcode)
+    console.log(nMerchant)
     
+    const nCargo = new Cargo()
+
 
 
   }

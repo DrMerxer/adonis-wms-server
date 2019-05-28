@@ -8,8 +8,9 @@ class FinanceSchema extends Schema {
     this.create('finances', (table) => {
       table.increments()
       table.timestamps()
-      table.string('title').notNullable().unique()
-      table.integer('balance').notNullable().defaultTo(0)
+      table.integer('order_id').notNullable().unsigned()
+      table.foreign('order_id').references('orders.id')
+      table.integer('money').notNullable().defaultTo(0)
     })
   }
 

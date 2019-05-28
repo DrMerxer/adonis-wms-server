@@ -9,8 +9,8 @@ class RfidSchema extends Schema {
       table.increments()
       table.timestamps()
 
-      //table.integer('tagid',255).notNullable().unique()
-      table.string('tagid',8).notNullable().unique()
+      table.string('tagid').notNullable().unique()
+      //status: 0. normal 1.broken
       table.integer('status').notNullable().defaultTo(0)
     })
   }
