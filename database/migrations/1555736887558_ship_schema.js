@@ -8,6 +8,7 @@ class ShipSchema extends Schema {
     this.create('ships', (table) => {
       table.increments()
       table.timestamps()
+      table.string('ship_id').notNullable().unique()
       table.integer('type').notNullable()
       // Type: 0. Arrival 1. Departure 2. Return/Exchange
       table.string('addr').notNullable()

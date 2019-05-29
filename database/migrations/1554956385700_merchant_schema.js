@@ -10,10 +10,9 @@ class MerchantSchema extends Schema {
       table.timestamps()
 
       table.string('name').notNullable()
-      table.integer('order_id').notNullable().unsigned()
-      table.foreign('order_id').references('orders.id')
       table.string('attr')
       //Size 0.small 1.medium 2.large
+      table.boolean('fragile').notNullable().defaultTo(false)
       table.integer('size')
       table.string('barcode').unique()
       table.integer('price').notNullable()

@@ -12,6 +12,8 @@ class OrderSchema extends Schema {
       table.string('name').notNullable()
       //type: 0.Buy-in 1.Sell-out 
       table.string('type').notNullable()
+      table.integer('merchant_id').unsigned()
+      table.foreign('merchant_id').references('merchants.id')
       //status: 0.on-going, 1.accomplished
       table.integer('status').notNullable().unsigned()
       table.string('company').notNullable()
