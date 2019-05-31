@@ -6,18 +6,24 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
+      @loggedIn
+      @if(auth.user.level > 2)
+      <li class="nav-item">
+        <a href="#" class="nav-link">Finance</a>
+      </li>
+      @endif
+      @if(auth.user.level > 1)
+      <li class="nav-item">
+        <a class="nav-link" href="#">Orders</a>
+      </li>
+      @endif
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Queries</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Orders</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Finance</a>
-      </li>
+      @endloggedIn
     </ul>
     <ul class="navbar-nav">
       @loggedIn
@@ -29,10 +35,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('UserController.show', {id: auth.user.id }) }}">Profile</a>
           <div class="dropdown-divider"></div>
-        <form action="{{ route('logout') }}" method="post">
-          {{ csrfField() }}
-          <button class="dropdown-item" type="submit"> Logout</button>
-        </form>
+          <form action="{{ route('logout') }}" method="post">
+            {{ csrfField() }}
+            <button class="dropdown-item" type="submit"> Logout</button>
+          </form>
         </div>
       </li>
       <li class="nav-item">

@@ -15,12 +15,11 @@ class CargoSchema extends Schema {
       table.boolean('ischecked').references('false')
       table.integer('shelf_id').unsigned().notNullable()
       table.foreign('shelf_id').references('shelves.id')
-      table.integer('status').notNullable() //status: 0. Down 1. Up
+      table.integer('isdel').notNullable() //status: 0. Down 1. Up
       table.integer('order_id').unsigned().notNullable()
       table.foreign('order_id').references('orders.id')
       table.integer('tag_id').unsigned().notNullable()
       table.foreign('tag_id').references('rfids.id')
-      
     })
   }
 
