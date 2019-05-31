@@ -33,6 +33,7 @@
     "factory": "^1.0.3",
     "mariasql": "^0.2.6",
     "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
     "sqlite3": "^4.0.8"
   },
   "devDependencies": {},
