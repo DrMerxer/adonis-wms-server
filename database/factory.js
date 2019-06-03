@@ -82,24 +82,34 @@ Factory.blueprint('App/Models/Shelf', async (faker) => {
     
   }
 })
-Factory.blueprint('App/Models/Rfid', async (faker) => {
+Factory.blueprint('App/Models/Order', async (faker) => {
   return {
-    
+    type: faker.integer({min:0, max:1}),
+    status: faker.integer({min:0, max:1}),
+    company: fakerjs.company(),
+    amount: faker.integer({min:10, max:80})
   }
 })
-Factory.blueprint('App/Models/Rfid', async (faker) => {
+Factory.blueprint('App/Models/Ship', async (faker) => {
   return {
-    
+    ship_id: faker.string({
+      pool:'1234567890',
+      length:'12'
+    }),
+    type: faker.integer({
+      min:0, max:2
+    })
   }
 })
-Factory.blueprint('App/Models/Rfid', async (faker) => {
+Factory.blueprint('App/Models/Cargo', async (faker) => {
   return {
-    
+    ischecked: faker.bool({ likelihood:80 }),
+    isdel: false
   }
 })
-Factory.blueprint('App/Models/Rfid', async (faker) => {
+Factory.blueprint('App/Models/Finance', async (faker) => {
   return {
-    
+    money: 0
   }
 })
 // async function makebrew() {

@@ -9,7 +9,7 @@ class MerchantSchema extends Schema {
       table.increments()
       table.timestamps()
 
-      table.string('name').notNullable()
+      table.string('name').notNullable().unique()
       table.string('attr')
       //Size 0.small 1.medium 2.large
       table.boolean('fragile').notNullable().defaultTo(false)

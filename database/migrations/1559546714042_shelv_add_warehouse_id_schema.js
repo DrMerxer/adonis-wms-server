@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class ShelvAddWarehouseIdSchema extends Schema {
   up () {
-    this.table('shelf', (table) => {
+    this.table('shelves', (table) => {
       // alter table
       table.integer('warehouse_id').unsigned()
       table.foreign('warehouse_id').references('warehouses.id')
@@ -13,7 +13,7 @@ class ShelvAddWarehouseIdSchema extends Schema {
   }
 
   down () {
-    this.table('shelf', (table) => {
+    this.table('shelves', (table) => {
       // reverse alternations
       table.dropForeign('warehouse_id')
       table.dropColumn('warehouse_id')

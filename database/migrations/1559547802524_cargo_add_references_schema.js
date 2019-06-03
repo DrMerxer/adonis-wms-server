@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class CargoAddReferencesSchema extends Schema {
   up () {
-    this.table('cargo_add_references', (table) => {
+    this.table('cargos', (table) => {
       // alter table
       table.string('barcode').notNullable().unique()
       table.foreign('barcode').references('merchants.barcode')
@@ -19,7 +19,7 @@ class CargoAddReferencesSchema extends Schema {
   }
 
   down () {
-    this.table('cargo_add_references', (table) => {
+    this.table('cargos', (table) => {
       // reverse alternations
       table.dropForeign('barcode')
       table.dropForeign('shelf_id')

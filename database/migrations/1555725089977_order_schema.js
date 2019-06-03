@@ -9,9 +9,8 @@ class OrderSchema extends Schema {
       table.increments()
       table.timestamps()
 
-      table.string('name').notNullable()
       //type: 0.Buy-in 1.Sell-out 
-      table.string('type').notNullable()
+      table.integer('type').notNullable()
       // table.integer('merchant_id').unsigned()
       // table.foreign('merchant_id').references('merchants.id')
       //status: 0.on-going, 1.accomplished

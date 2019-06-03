@@ -8,7 +8,9 @@ class OrderAddMerchantIdSchema extends Schema {
     this.table('orders', (table) => {
       // alter table
       table.integer('merchant_id').unsigned()
-      table.integer('merchant_id').references('merchants.id')
+      table.foreign('merchant_id').references('merchants.id')
+      table.string('name').notNullable()
+      table.foreign('name').references('merchants.name')
     })
   }
 
@@ -17,6 +19,8 @@ class OrderAddMerchantIdSchema extends Schema {
       // reverse alternations
       table.dropForeign('merchant_id')
       table.dropColumn('merchant_id')
+      table.dropForeign('name')
+      table.dropColumn('name')
     })
   }
 }

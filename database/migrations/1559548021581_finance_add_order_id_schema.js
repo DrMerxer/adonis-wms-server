@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class FinanceAddOrderIdSchema extends Schema {
   up () {
-    this.table('finance_add_order_ids', (table) => {
+    this.table('finances', (table) => {
       // alter table
       table.integer('order_id').notNullable().unsigned()
       table.foreign('order_id').references('orders.id')
@@ -13,7 +13,7 @@ class FinanceAddOrderIdSchema extends Schema {
   }
 
   down () {
-    this.table('finance_add_order_ids', (table) => {
+    this.table('finances', (table) => {
       // reverse alternations
       table.dropForeign('order_id')
       table.dropColumn('order_id')
