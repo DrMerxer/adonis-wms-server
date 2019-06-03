@@ -4,26 +4,17 @@
 const Model = use('Model')
 
 class Merchant extends Model {
-  getSize(barcode){
-    const targetMerchant = Merchant
-      .query()
-      .where('barcode', '=', barcode)
-      .fetch()
-
-    const targetMerchantJSON = targetMerchant.toJSON()
-    return targetMerchantJSON.size 
+  cargoes(){
+    return this.hasMany(
+      'App/Models/Cargo'
+    )
   }
 
-  isFragile(barcode){
-    const targetMerchant = Merchant
-      .query()
-      .where('barcode', '=', barcode)
-      .fetch()
-
-      const targetMerchantJSON = targetMerchant.toJSON()
-      return targetMerchantJSON.fragile
+  orders(){
+    return this.hasMany(
+      'App/Models/Order'
+    )
   }
-
 
 }
 

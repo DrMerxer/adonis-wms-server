@@ -4,7 +4,11 @@
 const Model = use('Model')
 
 class Ship extends Model {
-  
+  order(){
+      return this.belongsTo(
+          'App/Models/Order'
+      )
+  }
 }
 
 module.exports = Ship

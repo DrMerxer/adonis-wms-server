@@ -4,6 +4,13 @@
 const Model = use('Model')
 
 class Rfid extends Model {
+    Cargo(){
+        return this.belongsTo('App/Models/Cargo')
+    }
+
+    static get primaryKey(){
+        return 'id'
+    }
 }
 
 module.exports = Rfid
