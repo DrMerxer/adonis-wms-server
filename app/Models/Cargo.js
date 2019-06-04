@@ -30,7 +30,7 @@ class Cargo extends Model {
   }
 
   rfid(){
-    return this.hasOne(
+    return this.belongsTo(
       'App/Models/Rfid'
     )
   }

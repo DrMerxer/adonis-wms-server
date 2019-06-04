@@ -9,7 +9,7 @@ class OrderAddMerchantIdSchema extends Schema {
       // alter table
       table.integer('merchant_id').unsigned()
       table.foreign('merchant_id').references('merchants.id')
-      table.string('name').notNullable()
+      table.string('name')
       table.foreign('name').references('merchants.name')
     })
   }

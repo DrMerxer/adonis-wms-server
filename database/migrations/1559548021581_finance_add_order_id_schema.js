@@ -7,7 +7,7 @@ class FinanceAddOrderIdSchema extends Schema {
   up () {
     this.table('finances', (table) => {
       // alter table
-      table.integer('order_id').notNullable().unsigned()
+      table.integer('order_id').unsigned()
       table.foreign('order_id').references('orders.id')
     })
   }

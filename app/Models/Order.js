@@ -10,14 +10,6 @@ class Order extends Model {
         )
     }
 
-    merchant_name(){
-        return this.belongsTo(
-            'App/Models/Merchant',
-            'name',
-            'id'
-        )
-    }
-
     finance(){
         return this.hasOne(
             'App/Models/Finance'

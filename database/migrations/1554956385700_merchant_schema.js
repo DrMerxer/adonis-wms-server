@@ -14,9 +14,9 @@ class MerchantSchema extends Schema {
       //Size 0.small 1.medium 2.large
       table.boolean('fragile').notNullable().defaultTo(false)
       table.integer('size')
-      table.string('barcode').unique()
+      table.string('barcode').notNullable().unique()
       table.integer('price').notNullable()
-      table.integer('cost').notNullable()
+      table.integer('cost')
       table.integer('amount')
       table.integer('arrived')
       table.integer('checked')

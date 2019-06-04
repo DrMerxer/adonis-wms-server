@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class Rfid extends Model {
     Cargo(){
-        return this.belongsTo('App/Models/Cargo')
+        return this.hasOne('App/Models/Cargo')
     }
 
     static get primaryKey(){

@@ -52,10 +52,9 @@ Factory.blueprint('App/Models/Merchant', async (faker) => {
     name: fakerjs.commerce.productName(),
     attr: faker.integer({min:0, max:2}),
     fragile: faker.bool(),
-    size: fakerjs.commerce.productMaterial(),
+    size: faker.integer({min:0, max:2}),
     barcode: faker.string({pool:"1234567890", length:13}),
-    price: fakerjs.commerce.price(),
-    cost: faker.commerce.price()*0.85,
+    price: faker.integer({min:10, max:500})*100,
     amount: faker.integer({min:1, max:64}),
     arrived: 4,
     checked: 0,
@@ -66,7 +65,7 @@ Factory.blueprint('App/Models/Merchant', async (faker) => {
 Factory.blueprint('App/Models/Warehouse', async (faker) => {
   return {
     alias: faker.word(),
-    balance: faker.integer()
+    balance: faker.integer({min:12100, max:9999900})
   }
 })
 Factory.blueprint('App/Models/Shelf', async (faker) => {
@@ -74,11 +73,11 @@ Factory.blueprint('App/Models/Shelf', async (faker) => {
     size: faker.integer({min:0, max:2}),
     alias: faker.string({
       pool:"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-      length:6
+      length:4
     }),
     capacity: faker.integer({min:1, max:4})*10,
-    existing: Math.round(capacity * faker.floating({min:0, max:1})),
-    type: faker.integer({min: 0, max: 1}),
+    existing: 0,
+    type: 0,
     
   }
 })
@@ -86,7 +85,7 @@ Factory.blueprint('App/Models/Order', async (faker) => {
   return {
     type: faker.integer({min:0, max:1}),
     status: faker.integer({min:0, max:1}),
-    company: fakerjs.company(),
+    company: fakerjs.company.companyName(),
     amount: faker.integer({min:10, max:80})
   }
 })
@@ -98,7 +97,8 @@ Factory.blueprint('App/Models/Ship', async (faker) => {
     }),
     type: faker.integer({
       min:0, max:2
-    })
+    }),
+    addr: fakerjs.address.state() + " " + fakerjs.address.city() + " " + fakerjs.address.streetName() + " " + fakerjs.address.secondaryAddress()
   }
 })
 Factory.blueprint('App/Models/Cargo', async (faker) => {
