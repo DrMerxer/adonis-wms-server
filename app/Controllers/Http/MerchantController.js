@@ -50,42 +50,24 @@ class MerchantController {
    * @param {Response} ctx.response
    */
   async store ({ request, response, session }) {
-    const rules = {
-      name: 'required|min:2|max:64',
-      attr: 'required|min:1|max:255',
-      barcode: 'required|min:8|max:8',
-      checkbox: 'required|boolean',
-      amount: 'integer',
-      size: 'integer|min:0|max:2',
-      arrived: 'integer',
-      checked: 'integer',
-      departured: 'integer'
-    }
 
-    const validation = await ValidityState(request.all(), rules)
-    if(validation.fails()){
-      session
-        .withErrors(validation.messages())
-        .flashAll()
-      return response.redirect('/merchant')
-    }
-
-    const newMerchant = request.only(
+    var newMerchant = request.only([
       'name',
       'attr',
       'size',
       'barcode',
-      'price',
-      'cost',
       'amount',
       'arrived',
       'checked',
       'departured'
-    )
+    ])
+    //Optimize price and cost from float to integer
+    newMerchant.price = parseInt(parseFloat(request.only(['price']).price * 100))
+    newMerchant.cost = parseInt(parseFloat(request.only(['cost']).cost * 100))
     console.log(newMerchant)
     const merchant = await Merchant.create(newMerchant)
 
-    return response.redirect('/merchant')
+    return response.redirect('/merchants')
   }
 
   /**

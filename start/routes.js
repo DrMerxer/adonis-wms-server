@@ -44,6 +44,12 @@ Route
 Route
   .get('gun/arrive', 'GunController.arrive')
 
+Route
+  .get('merchants/create', ({ reponse }) => response.route('mcreate'))
+
+Route
+  .get('merchantcreate', 'MerchantController.create')
+  .as('mcreate')
 
 Route.resource('users', 'UserController')
 
