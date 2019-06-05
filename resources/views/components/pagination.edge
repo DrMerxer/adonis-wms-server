@@ -1,0 +1,19 @@
+  <ul class="pagination">
+    @if(!hideNavigator)
+    <li class="page-item{{ page <= 1 ? ' disabled' : '' }}">
+      <a href="{{ page <= 1 ? '#' : '?page=' + (parseInt(page) - 1) }}" class="page-link">上一页</a>
+    </li>
+    @endif
+    @if(!hidePageNumbers)
+    @each(item in pageItems(parseInt(lastPage), parseInt(page)))
+    <li class="page-item">
+      <a href="{{ '?page=' + item }}" class="page-link">{{ item }}</a>
+    </li>
+    @endeach
+    @endif
+    @if(!hideNavigator)
+    <li class="page-item{{ page >= lastPage ? ' disabled' : '' }}">
+      <a href="{{ page >= lastPage ? '#' : '?page=' + (parseInt(page) + 1) }}" class="page-link">下一页</a>
+    </li>
+    @endif
+  </ul>

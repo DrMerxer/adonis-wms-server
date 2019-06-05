@@ -46,3 +46,5 @@ Route
 
 
 Route.resource('users', 'UserController')
+
+Route.resource('merchants', 'MerchantController')

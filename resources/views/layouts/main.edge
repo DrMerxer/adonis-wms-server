@@ -5,19 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  {{ style('https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css') }}
-  {{ style('https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css')}}
+  {{ style('public-css/bootstrap.min.css') }}
+  {{ style('public-css/jquery-ui.min.css')}}
   {{ style('main') }}
 </head>
 
 <body>
    @!include('partials.navbar')
    @!section('content')
-   {{ script('https://cdn.bootcss.com/popper.js/1.15.0/esm/popper.min.js') }} <!-- Popper is required by the current version of bootstrap to fullfill some of the functions-->
-   {{ script('https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js') }}
-   {{ script('https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css') }}
-   {{ script('https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js') }}
-   {{ script('https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js')}}
+   {{ script('public-css/popper.min.js') }} <!-- Popper is required by the current version of bootstrap to fullfill some of the functions-->
+   {{ script('public-css/jquery.min.js') }}
+   {{ script('public-css/all.min.css') }}
+   {{ script('public-css/jquery-ui.min.js') }}
+   {{ script('public-css/bootstrap.min.js')}}
    {{ script('main') }}
 </body>
 

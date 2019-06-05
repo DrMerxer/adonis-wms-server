@@ -50,11 +50,11 @@ Factory.blueprint('App/Models/Rfid', async (faker) => {
 Factory.blueprint('App/Models/Merchant', async (faker) => {
   return {
     name: fakerjs.commerce.productName(),
-    attr: faker.integer({min:0, max:2}),
+    attr: faker.sentence(),
     fragile: faker.bool(),
     size: faker.integer({min:0, max:2}),
     barcode: faker.string({pool:"1234567890", length:13}),
-    price: faker.integer({min:10, max:500})*100,
+    price: faker.integer({min:10, max:100})*100,
     amount: faker.integer({min:1, max:64}),
     arrived: 4,
     checked: 0,

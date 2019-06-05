@@ -1,5 +1,6 @@
 'use strict'
-
+const Merchant = use('App/Models/Merchant')
+const { validate } = use('Validator')
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -18,6 +19,13 @@ class MerchantController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    const page = request.input('page')
+    const perPage = 15
+    const merchants = await Merchant 
+      .query()
+      .paginate(page, perPage)
+    console.log(merchants.toJSON())
+    return view.render('merchant.index', {...merchants.toJSON()})
   }
 
   /**
@@ -30,7 +38,7 @@ class MerchantController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
-    return view.render('')
+    
   }
 
   /**
@@ -41,8 +49,43 @@ class MerchantController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store ({ request, response, session }) {
+    const rules = {
+      name: 'required|min:2|max:64',
+      attr: 'required|min:1|max:255',
+      barcode: 'required|min:8|max:8',
+      checkbox: 'required|boolean',
+      amount: 'integer',
+      size: 'integer|min:0|max:2',
+      arrived: 'integer',
+      checked: 'integer',
+      departured: 'integer'
+    }
 
+    const validation = await ValidityState(request.all(), rules)
+    if(validation.fails()){
+      session
+        .withErrors(validation.messages())
+        .flashAll()
+      return response.redirect('/merchant')
+    }
+
+    const newMerchant = request.only(
+      'name',
+      'attr',
+      'size',
+      'barcode',
+      'price',
+      'cost',
+      'amount',
+      'arrived',
+      'checked',
+      'departured'
+    )
+    console.log(newMerchant)
+    const merchant = await Merchant.create(newMerchant)
+
+    return response.redirect('/merchant')
   }
 
   /**
