@@ -61,28 +61,4 @@ const aliases = {}
 const commands = []
 
 
-module.exports = { providers, aceProviders, aliases, commands, 
-  locales: {
-    /*
-    |--------------------------------------------------------------------------
-    | Loader
-    |--------------------------------------------------------------------------
-    |
-    | The loader to be used for loading locale strings. The inbuilt loaders
-    | are `file` and `database`.
-    |
-    */
-    loader: 'file',
-  
-    /*
-    |--------------------------------------------------------------------------
-    | Locale
-    |--------------------------------------------------------------------------
-    |
-    | The default locale to be used when unable to detect the user locale.
-    | Or if user locale is not supported.
-    |
-    */
-    locale: 'en'
-  }
-}
+module.exports = { providers, aceProviders, aliases, commands}

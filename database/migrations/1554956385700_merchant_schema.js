@@ -21,6 +21,7 @@ class MerchantSchema extends Schema {
       table.integer('arrived')
       table.integer('checked')
       table.integer('departured')
+      table.boolean('isdel').defaultTo(false)
     })
   }
 
