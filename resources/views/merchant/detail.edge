@@ -1,0 +1,68 @@
+@layout('layouts.main')
+@section('content')
+
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+    <h1>Info: {{ merchant.name }}</h1>
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="container d-flex justify-content-center" style="padding-top:3vh">
+        <table class="table">
+            <tr>
+              <th scope="row">商品ID</th>
+              <td>{{ merchant.id }}</td>
+            </tr>
+            <tr>
+              <th scope="row">商品名</th>
+              <td>{{ merchant.name }}</td>
+            </tr>
+            <tr>
+              <th scope="row">商品描述</th>
+              <td>{{ merchant.attr }}</td>
+            </tr>
+            <tr>
+              <th scope="row">易碎</th>
+              <td>{{ merchant.fragile }}</td>
+            </tr>
+            <tr>
+              <th scope="row">尺寸</th>
+              <td>{{ merchant.size }}</td>
+            </tr>
+            <tr>
+              <th scope="row">条形码</th>
+              <td>{{ merchant.barcode }}</td>
+            </tr>
+            <tr>
+              <th scope="row">售价</th>
+              <td>{{ merchant.price }}</td>
+            </tr>
+            <tr>
+              <th scope="row">成本</th>
+              <td>{{ merchant.cost }}</td>
+            </tr>
+            <tr>
+              <th scope="row">总数量</th>
+              <td>{{ merchant.amount }}</td>
+            </tr>
+            <tr>
+              <th scope="row">已入库</th>
+              <td>{{ merchant.arrived }}</td>
+            </tr>
+            <tr>
+              <th scope="row">已清点</th>
+              <td>{{ merchant.checked }}</td>
+            </tr>
+            <tr>
+              <th scope="row">已出库</th>
+              <td>{{ merchant.departured }}</td>
+            </tr>
+          </table>
+    </div>
+    
+  </div>
+</div>
+
+@endsection

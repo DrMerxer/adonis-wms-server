@@ -7,50 +7,62 @@
     </div>
   </div>
   <div class="row">
-      <div class="divider"></div>
+    <div class="divider"></div>
   </div>
   <div class="row" style="padding-top: 2vh">
     <div class="container">
-      <button class="btn btn-primary" data-toggle="modal" data-target="#createMerchant">创建商品</button>
-      <button class="btn btn-light">搜索</button>
-      <button class="btn btn-light"  onclick="window.location.reload()">刷新</button>
-      @!include('merchant.create')
+      <a href="{{route('MerchantController.create')}}"><button class="btn btn-primary">创建商品</button></a>
+      <button class="btn btn-light" data-toggle="modal" data-target="">搜索</button>
+      <button class="btn btn-light" onclick="window.location.reload()">刷新</button>
     </div>
   </div>
   <div class="row">
     <div class="container" style="padding-top:2vh">
-        <table class="table table-bordered table-responseive-md">
-            <thead>
-              <tr>
-                <th>商品ID</th>
-                <th>商品名</th>
-                <th>数量</th>
-                <th>条形码</th>
-                <th>价格</th>
-                <th>功能</th>
-              </tr>
-            </thead>
-            @each(merchant in data)
-              <tr>
-                <th>{{merchant.id}}</th>
-                <th>{{merchant.name}}</th>
-                <th>{{merchant.amount}}</th>
-                <th>{{merchant.barcode}}</th>
-                <th>{{parseFloat(merchant.price)/100.0}}</th>
-              <tr>
-            @endeach
-          </table>
+      <table class="table table-bordered table-responseive">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>数量</th>
+            <th>条形码</th>
+            <th>价格</th>
+            <th>功能</th>
+          </tr>
+        </thead>
+        @each(merchant in data)
+        <tr>
+          <th>{{merchant.id}}</th>
+          <th>{{merchant.name}}</th>
+          <th>{{merchant.amount}}</th>
+          <th>{{merchant.barcode}}</th>
+          <th>{{parseFloat(merchant.price)/100.0}}</th>
+          <th>
+            <button href="delete?id={{ merchant.id }}" class="btn">
+              <i class="fas fa-trash"></i>
+            </button>
+            <a href="{{route('MerchantController.detail')}}?id={{ merchant.id }}" >
+                <button class="btn">
+                    <i class="fas fa-info"></i>
+                  </button>
+            </a>
+            <button class="btn" data-toggle="modal" data-target="#editMerchant">
+              <i class="fas fa-edit"></i>
+            </button>
+          </th>
+        <tr>
+          @endeach
+      </table>
     </div>
   </div>
   <div class="row">
     <div class="container" style="padding-top: 2vh">
-      @!component('components.pagination', 
-        {
-          total,
-          perPage,
-          page,
-          lastPage
-        }
+      @!component('components.pagination',
+      {
+      total,
+      perPage,
+      page,
+      lastPage
+      }
       )
     </div>
   </div>

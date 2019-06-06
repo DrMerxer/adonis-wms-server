@@ -6,7 +6,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": "node ace test",
+    "assets-dev": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "assets-watch": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "assets-hot": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "assets-production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "keywords": [
     "adonisjs",
@@ -29,9 +33,11 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.0.6",
+    "axios": "^0.19.0",
     "echarts": "^4.2.1",
     "factory": "^1.0.3",
     "faker": "^4.1.0",
+    "laravel-mix": "^4.0.16",
     "lodash": "^4.17.11",
     "mariasql": "^0.2.6",
     "merchant.js": "^1.0.0",
@@ -39,6 +45,8 @@
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "sqlite3": "^4.0.8",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
     "youch": "^2.0.10"
   },
   "devDependencies": {},

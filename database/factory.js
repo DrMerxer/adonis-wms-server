@@ -55,8 +55,9 @@ Factory.blueprint('App/Models/Merchant', async (faker) => {
     size: faker.integer({min:0, max:2}),
     barcode: faker.string({pool:"1234567890", length:13}),
     price: faker.integer({min:10, max:100})*100,
+    cost: faker.integer({min:5, max:20})*100,
     amount: faker.integer({min:1, max:64}),
-    arrived: 4,
+    arrived: 0,
     checked: 0,
     departured: 0
   }

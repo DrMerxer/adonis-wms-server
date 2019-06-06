@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  {{ style('public-css/bootstrap.min.css') }}
-  {{ style('public-css/jquery-ui.min.css')}}
-  {{ style('main') }}
-</head>
-
-<body>
-   @!include('partials.navbar')
-   @!section('content')
-   {{ script('public-css/popper.min.js') }} <!-- Popper is required by the current version of bootstrap to fullfill some of the functions-->
-   {{ script('public-css/jquery.min.js') }}
-   {{ script('public-css/all.min.css') }}
-   {{ script('public-css/jquery-ui.min.js') }}
-   {{ script('public-css/bootstrap.min.js')}}
-   {{ script('main') }}
-</body>
-
-</html>
+@include('layouts.partials.header')
+  @include('layouts.partials.navbar')
+  @!section('content')
+@include('layouts.partials.footer')

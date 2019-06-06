@@ -4,6 +4,17 @@
 const Model = use('Model')
 
 class Merchant extends Model {
+  static boot() {
+    super.boot()
+
+    this.addHook('beforeSave', 'MerchantHook.savePrice')
+    this.addHook('afterFind', 'MerchantHook.readPrice')
+    this.addHook('afterFind', 'MerchantHook.readCost')
+    this.addHook('beforeSave', 'MerchantHook.saveCost')
+    this.addHook('afterFind', 'MerchantHook.readFragile')
+    this.addHook('afterFind', 'MerchantHook.readSize')
+  }
+
   cargoes(){
     return this.hasMany(
       'App/Models/Cargo'
@@ -15,6 +26,8 @@ class Merchant extends Model {
       'App/Models/Order'
     )
   }
+
+
 
 }
 

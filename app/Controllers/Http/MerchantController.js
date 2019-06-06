@@ -38,7 +38,7 @@ class MerchantController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
-    
+    return view.render('merchant.create')
   }
 
   /**
@@ -51,19 +51,40 @@ class MerchantController {
    */
   async store ({ request, response, session }) {
 
+    const rules = {
+      name: 'required|min:2|max:60',
+      attr: 'required|min:1|max:255',
+      barcode: 'required|min:8|max:13',
+      price: 'required',
+      cost: 'required',
+      amount: 'integer',
+      arrived: 'integer',
+      checked: 'integer',
+      departured: 'integer'
+   }
+
+   const validation = await validate(request.all(), rules)
+
+   if (validation.fails()){
+      session
+         .withErrors(validation.messages())
+         .flashAll()
+      return response.redirect('back')
+   }
+
     var newMerchant = request.only([
       'name',
       'attr',
       'size',
+      'fragile',
       'barcode',
       'amount',
       'arrived',
       'checked',
-      'departured'
+      'departured',
+      'cost',
+      'price'
     ])
-    //Optimize price and cost from float to integer
-    newMerchant.price = parseInt(parseFloat(request.only(['price']).price * 100))
-    newMerchant.cost = parseInt(parseFloat(request.only(['cost']).cost * 100))
     console.log(newMerchant)
     const merchant = await Merchant.create(newMerchant)
 
@@ -80,6 +101,7 @@ class MerchantController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+
   }
 
   /**
@@ -92,6 +114,9 @@ class MerchantController {
    * @param {View} ctx.view
    */
   async edit ({ params, request, response, view }) {
+    const merchant = await Merchant.findBy('id', params.id)
+
+    return view.render('merchant.edit', { merchant })
   }
 
   /**
@@ -114,6 +139,14 @@ class MerchantController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+  }
+
+  async detail({ request, view }){
+    const id = request.input('id')
+    const merchant = await Merchant.findBy('id', id)
+      
+    console.log(merchant)
+    return view.render('merchant.detail', { merchant })
   }
 }
 
