@@ -35,7 +35,7 @@ Factory.blueprint('App/Models/User', async (faker) => {
     birth: faker.date(),
     gender: faker.bool(),
     isdel: faker.bool(),
-    last_login: faker.date(),
+    last_login: new Date(),
     level: faker.integer({min:1,max:3}),
   }
 })
