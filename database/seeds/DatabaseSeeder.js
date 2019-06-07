@@ -15,6 +15,7 @@ const Factory = use('Factory')
 const Merchant = use('App/Models/Merchant')
 const Order = use('App/Models/Order')
 const Ship = use('App/Models/Ship')
+const User = use('App/Models/User')
 class DatabaseSeeder {
   async run() {
     const warehouse = await Factory
@@ -28,7 +29,7 @@ class DatabaseSeeder {
         .model('App/Models/Merchant')
         .create()
 
-        const order = await Factory
+      const order = await Factory
         .model('App/Models/Order')
         .make()
 
@@ -36,8 +37,8 @@ class DatabaseSeeder {
 
       const user = await Factory
         .model("App/Models/User")
-        .create()
-
+        .make()
+      await warehouse.users().save(user)
       const shelf = await Factory
         .model('App/Models/Shelf')
         .make()
@@ -68,10 +69,24 @@ class DatabaseSeeder {
         .model('App/Models/Finance')
         .make()
 
-      order.finance().save(finance)
+      await order.finance().save(finance)
 
       i+=1
     }
+
+    const users = [{
+      "username": "abnernat",
+      "email": "zhang951005@gmail.com",
+      "birth": "1995-10-05 00:00:00",
+      "gender": 1,
+      "isdel": 0,
+      "last_login": "2019-6-4 12:34:54",
+      "level": 3,
+      "password": "Docrid1cul0us",
+      "warehouse_id": 1
+    }]
+    await User.createMany(users)
+    
   }
 }
 

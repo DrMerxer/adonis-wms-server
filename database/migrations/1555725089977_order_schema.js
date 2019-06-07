@@ -17,6 +17,7 @@ class OrderSchema extends Schema {
       table.integer('status').notNullable().unsigned()
       table.string('company').notNullable()
       table.integer('amount').notNullable().unsigned()
+      table.boolean('isdel').defaultTo(false)
     })
   }
 
