@@ -2,30 +2,39 @@
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
-
+const Cargo = use('App/Models/Cargo')
 class Order extends Model {
-    merchant(){
-        return this.belongsTo(
-            'App/Models/Merchant'
-        )
-    }
+  static boot() {
+    super.boot()
 
-    finance(){
-        return this.hasOne(
-            'App/Models/Finance'
-        )
-    }
+    this.addHook('beforeSave', 'OrderHook.saveType')
+    this.addHook('afterFind', 'OrderHook.readType')
+    this.addHook('beforeSave', 'OrderHook.saveStatus')
+    this.addHook('afterFind', 'OrderHook.readStatus')
+  }
 
-    ship(){
-        return this.hasOne(
-            'App/Models/Ship'
-        )
-    }
-    cargo(){
-      return this.hasMany(
-        'App/Models/Cargo'
-      )
-    }
+  merchant() {
+    return this.belongsTo(
+      'App/Models/Merchant'
+    )
+  }
+
+  finance() {
+    return this.hasOne(
+      'App/Models/Finance'
+    )
+  }
+
+  ship() {
+    return this.hasOne(
+      'App/Models/Ship'
+    )
+  }
+  cargo() {
+    return this.hasMany(
+      'App/Models/Cargo'
+    )
+  }
 }
 
 module.exports = Order

@@ -17,12 +17,6 @@ class Merchant extends Model {
     this.addHook('beforeSave', 'MerchantHook.saveFragile')
   }
 
-  cargoes(){
-    return this.hasMany(
-      'App/Models/Cargo'
-    )
-  }
-
   orders(){
     return this.hasMany(
       'App/Models/Order'

@@ -49,7 +49,6 @@ class DatabaseSeeder {
         .model('App/Models/Cargo')
         .make()
 
-      await merchant.cargoes().save(cargo)
       await shelf.cargo().save(cargo)
 
       const ship = await Factory

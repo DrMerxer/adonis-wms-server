@@ -3,7 +3,7 @@
 <div class="col">
   <div class="row">
     <div class="container" style="padding-top:2vh">
-      <h1>Merchants</h1>
+      <h1>商品</h1>
     </div>
   </div>
   <div class="row">
@@ -41,14 +41,16 @@
                   <i class="fas fa-trash"></i>
                 </button>
             </a>
-            <a href="{{route('MerchantController.detail')}}?id={{ merchant.id }}" >
+            <a href="{{route('MerchantController.detail')}}?id={{ merchant.id }}&page={{ page }}">
                 <button class="btn">
-                    <i class="fas fa-info"></i>
-                  </button>
+                  <i class="fas fa-info"></i>
+                </button>
             </a>
-            <button class="btn" data-toggle="modal" data-target="#editMerchant">
-              <i class="fas fa-edit"></i>
-            </button>
+            <a href="{{route('MerchantController.edit')}}?id={{ merchant.id }}&page={{ page }}">
+              <button class="btn">
+                <i class="fas fa-edit"></i>
+              </button>
+            </a>
           </th>
         <tr>
           @endeach
@@ -63,8 +65,7 @@
       perPage,
       page,
       lastPage
-      }
-      )
+      })
     </div>
   </div>
 </div>

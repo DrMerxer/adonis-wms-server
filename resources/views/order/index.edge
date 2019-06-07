@@ -3,7 +3,7 @@
 <div class="col">
   <div class="row">
     <div class="container" style="padding-top:2vh">
-      <h1>Merchants</h1>
+      <h1>订单</h1>
     </div>
   </div>
   <div class="row">
@@ -11,7 +11,7 @@
   </div>
   <div class="row" style="padding-top: 2vh">
     <div class="container">
-      <a href="{{route('MerchantController.create')}}"><button class="btn btn-primary">创建订单</button></a>
+      <a href="{{route('OrderController.create')}}"><button class="btn btn-primary">创建订单</button></a>
       <button class="btn btn-light" onclick="window.location.reload()">刷新</button>
     </div>
   </div>
@@ -32,25 +32,27 @@
         @each(order in data)
         <tr>
           <th>{{order.id}}</th>
-          <th>{{order.name}}</th>
+          <th>{{order.merchant.name}}</th>
           <th>{{order.amount}}</th>
           <th>{{order.status}}</th>
           <th>{{order.type}}</th>
           <th>{{order.company}}</th>
           <th>
-            <a href="/orders/delete?id={{ merchant.id }}&page={{page}}">
+            <a href="/orders/delete?id={{ order.id }}&page={{page}}">
                 <button class="btn">
                   <i class="fas fa-trash"></i>
                 </button>
             </a>
-            <a href="{{route('OrderController.detail')}}?id={{ order.id }}" >
+            <a href="{{route('OrderController.detail')}}?id={{ order.id }}&page={{ page }}" >
                 <button class="btn">
                     <i class="fas fa-info"></i>
                   </button>
             </a>
-            <button class="btn" data-toggle="modal" data-target="#editMerchant">
-              <i class="fas fa-edit"></i>
-            </button>
+            <a href="{{route('OrderController.edit')}}?id={{ order.id }}&page={{ page }}">
+              <button class="btn">
+                <i class="fas fa-edit"></i>
+              </button>
+            </a>
           </th>
         <tr>
           @endeach
@@ -65,8 +67,7 @@
       perPage,
       page,
       lastPage
-      }
-      )
+      })
     </div>
   </div>
 </div>

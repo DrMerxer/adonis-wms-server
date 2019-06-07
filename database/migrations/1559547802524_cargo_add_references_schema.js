@@ -7,8 +7,6 @@ class CargoAddReferencesSchema extends Schema {
   up () {
     this.table('cargos', (table) => {
       // alter table
-      table.integer('merchant_id').unsigned()
-      table.foreign('merchant_id').references('merchants.id')
       table.integer('shelf_id').unsigned()
       table.foreign('shelf_id').references('shelves.id')
       table.integer('order_id').unsigned()
@@ -21,11 +19,9 @@ class CargoAddReferencesSchema extends Schema {
   down () {
     this.table('cargos', (table) => {
       // reverse alternations
-      table.dropForeign('merchant_id')
       table.dropForeign('shelf_id')
       table.dropForeign('order_id')
       table.dropForeign('rfid_id')
-      table.dropColumn('merchant_id')
       table.dropColumn('shelf_id')
       table.dropColumn('order_id')
       table.dropColumn('rfid_id')

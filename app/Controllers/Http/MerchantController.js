@@ -115,9 +115,11 @@ class MerchantController {
    * @param {View} ctx.view
    */
   async edit ({ params, request, response, view }) {
-    const merchant = await Merchant.findBy('id', params.id)
-
-    return view.render('merchant.edit', { merchant })
+    const id = request.input('id')
+    const page = request.input('page')
+    const merchant = await Merchant.findOrFail(id)
+    console.log(merchant)
+    return view.render('merchant.edit', { merchant, id, page })
   }
 
   /**
@@ -129,6 +131,50 @@ class MerchantController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    const id = request.input('id')
+    const page = request.input('page')
+    const rules = {
+      name: 'required|min:2|max:60',
+      attr: 'required|min:1|max:255',
+      barcode: 'required|min:8|max:13',
+      price: 'required',
+      cost: 'required',
+      amount: 'integer',
+      arrived: 'integer',
+      checked: 'integer',
+      departured: 'integer'
+   }
+
+   const validation = await validate(request.all(), rules)
+
+   if (validation.fails()){
+      session
+         .withErrors(validation.messages())
+         .flashAll()
+      return response.redirect('back')
+   }
+
+    var newMerchant = request.only([
+      'name',
+      'attr',
+      'size',
+      'fragile',
+      'barcode',
+      'amount',
+      'arrived',
+      'checked',
+      'departured',
+      'cost',
+      'price'
+    ])
+
+    const edit = await Merchant.findOrFail(id)
+    edit.merge(newMerchant)
+    edit.save()
+
+    console.log(newMerchant)
+
+    return response.redirect('/merchants?page='+page)
   }
 
   /**
@@ -153,11 +199,13 @@ class MerchantController {
   async detail({ request, view }){
     const id = request.input('id')
     
-    const merchant = await Merchant.findBy('id', id)
+    const merchant = await Merchant.find(id)
       
     //console.log(merchant)
     return view.render('merchant.detail', { merchant })
   }
+
+  
 }
 
 module.exports = MerchantController

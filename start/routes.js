@@ -44,18 +44,21 @@ Route
 Route
   .get('gun/arrive', 'GunController.arrive')
 
-Route
-  .get('merchants/detail', 'MerchantController.detail')
-  .as('mdetail')
-
 // Route.get('mdetail', ({ response }) => response.route('mdetail'))
 
-Route
-  .get('merchants/create', 'MerchantController.create')
-
-Route
-  .get('merchants/delete', 'MerchantController.destroy')
+Route.get('merchants/create', 'MerchantController.create')
+Route.get('merchants/delete', 'MerchantController.destroy')
+Route.get('merchants/edit', 'MerchantController.edit')
+Route.post('merchants/update', 'MerchantController.update')
+Route.get('merchants/detail', 'MerchantController.detail')
 
 Route.resource('users', 'UserController')
 
 Route.resource('merchants', 'MerchantController')
+
+Route.get('orders', 'OrderController.index')
+Route.get('orders/delete', 'OrderController.destroy')
+Route.get('orders/create', 'OrderController.create')
+Route.post('orders/store', 'OrderController.store')
+Route.get('orders/edit', 'OrderController.edit')
+Route.post('orders/update', 'MerchantController.update')

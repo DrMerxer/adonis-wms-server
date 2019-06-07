@@ -1,0 +1,48 @@
+@layout('layouts.main')
+@section('content')
+@include('partial.card.header')
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+      <h2>修改订单：#{{ order.id }}</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+      <form action="{{ route('OrderController.update')}}?id={{ id }}&page={{ page }}" method="POST">
+        <div class="form-group">
+          <label for="name">订单名称</label>
+          <input type="text" disabled class="form-control  " value="{{ merchant_name }}" name="name" placeholder="请输入商品名称">
+        </div>
+        <div class="form-group">
+          <label for="company">公司名称</label>
+          <input type="text" class="form-control  " value="{{ order.company }}" name="company"
+            placeholder="输入商品描述，不超过255字">
+        </div>
+        <div class="form-group">
+          <label for="type">订单类型</label>
+          <div>
+            <input type="radio" name="type" value="1"> 买入 <br>
+            <input type="radio" name="type" value="0"> 卖出 <br>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="status">订单状态</label>
+          <div>
+            <input type="radio" name="status" value="0"> 正在进行 <br>
+            <input type="radio" name="status" value="1"> 已完成 <br>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="amount">订单货量</label>
+          <input type="number" class="form-control  " value="{{ order.amount }}" name="amount" placeholder="请输入订单货量">
+        </div>
+        {{ csrfField() }}
+        <button type="submit" class="btn btn-primary">提交更改</button>
+      </form>
+    </div>
+  </div>
+</div>
+@include('partial.card.footer')
+@endsection
