@@ -24,6 +24,22 @@ MerchantHook.readFragile = async (merchantInstance) => {
       case 1:
         merchantInstance.fragile = undefined
         merchantInstance.fragile = '易碎'
+        break;
+    }
+  }
+}
+
+MerchantHook.saveFragile = async (merchantInstance) => {
+  if(merchantInstance){
+    switch(merchantInstance.fragile){
+      case '普通':
+        merchantInstance.fragile = undefined
+        merchantInstance.fragile = 0
+      break;
+      case '易碎':
+        merchantInstance.fragile = undefined
+        merchantInstance.fragile = 1
+        break;
     }
   }
 }
@@ -34,12 +50,34 @@ MerchantHook.readSize = async (merchantInstance) => {
       case 0:
         merchantInstance.size = undefined
         merchantInstance.size = '小'
+        break;
       case 1:
         merchantInstance.size = undefined
         merchantInstance.size = '中'
-      case 1:
+        break;
+      case 2:
         merchantInstance.size = undefined
         merchantInstance.size = '大'
+        break;
+    }
+  }
+}
+
+MerchantHook.saveSize = async (merchantInstance) => {
+  if(merchantInstance) {
+    switch(merchantInstance.size){
+      case '小':
+        merchantInstance.size = undefined
+        merchantInstance.size = '0'
+        break;
+      case '中':
+        merchantInstance.size = undefined
+        merchantInstance.size = '1'
+        break;
+      case '大':
+        merchantInstance.size = undefined
+        merchantInstance.size = '2'
+        break;
     }
   }
 }

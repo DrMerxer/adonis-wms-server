@@ -18,8 +18,13 @@ class Order extends Model {
 
     ship(){
         return this.hasOne(
-            'App/Model/Ship'
+            'App/Models/Ship'
         )
+    }
+    cargo(){
+      return this.hasMany(
+        'App/Models/Cargo'
+      )
     }
 }
 

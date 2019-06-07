@@ -23,12 +23,6 @@ class Cargo extends Model {
     )
   }
 
-  tag_id(){
-    return this.belongsTo(
-      'App/Models/Rfid'
-    )
-  }
-
   rfid(){
     return this.belongsTo(
       'App/Models/Rfid'

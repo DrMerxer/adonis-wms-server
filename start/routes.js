@@ -53,6 +53,9 @@ Route
 Route
   .get('merchants/create', 'MerchantController.create')
 
+Route
+  .get('merchants/delete', 'MerchantController.destroy')
+
 Route.resource('users', 'UserController')
 
 Route.resource('merchants', 'MerchantController')

@@ -4,12 +4,8 @@
 const Model = use('Model')
 
 class Rfid extends Model {
-    Cargo(){
+    cargo(){
         return this.hasOne('App/Models/Cargo')
-    }
-
-    static get primaryKey(){
-        return 'id'
     }
 }
 

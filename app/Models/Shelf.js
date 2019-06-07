@@ -9,6 +9,12 @@ class Shelf extends Model {
       'App/Models/Warehouse'
     )
   }
+
+  cargo(){
+    return this.hasMany(
+      'App/Models/Cargo'
+    )
+  }
 }
 
 module.exports = Shelf

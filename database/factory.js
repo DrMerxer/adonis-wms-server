@@ -54,12 +54,13 @@ Factory.blueprint('App/Models/Merchant', async (faker) => {
     fragile: faker.bool(),
     size: faker.integer({min:0, max:2}),
     barcode: faker.string({pool:"1234567890", length:13}),
-    price: faker.integer({min:10, max:100})*100,
-    cost: faker.integer({min:5, max:20})*100,
+    price: faker.integer({min:10, max:100}),
+    cost: faker.integer({min:5, max:20}),
     amount: faker.integer({min:1, max:64}),
     arrived: 0,
     checked: 0,
-    departured: 0
+    departured: 0,
+    isdel: false
   }
 })
 
@@ -87,7 +88,7 @@ Factory.blueprint('App/Models/Order', async (faker) => {
     type: faker.integer({min:0, max:1}),
     status: faker.integer({min:0, max:1}),
     company: fakerjs.company.companyName(),
-    amount: faker.integer({min:10, max:80})
+    amount: faker.integer({min:10, max:80}),
   }
 })
 Factory.blueprint('App/Models/Ship', async (faker) => {

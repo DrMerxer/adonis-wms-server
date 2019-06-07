@@ -23,8 +23,9 @@ class MerchantController {
     const perPage = 15
     const merchants = await Merchant 
       .query()
+      .where('isdel', false)
       .paginate(page, perPage)
-    console.log(merchants.toJSON())
+    //console.log(merchants.toJSON())
     return view.render('merchant.index', {...merchants.toJSON()})
   }
 
@@ -85,7 +86,7 @@ class MerchantController {
       'cost',
       'price'
     ])
-    console.log(newMerchant)
+    //console.log(newMerchant)
     const merchant = await Merchant.create(newMerchant)
 
     return response.redirect('/merchants')
@@ -138,14 +139,23 @@ class MerchantController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, request, response, view }) {
+    const id = request.input('id')
+    const page = request.input('page')
+    console.log(id)
+    const updateIsdel = { "isdel": id }
+    const delmerc = await Merchant.findOrFail(id)
+    delmerc.merge(updateIsdel)
+    delmerc.save()
+    return response.redirect('/merchants?page='+page)
   }
 
   async detail({ request, view }){
     const id = request.input('id')
+    
     const merchant = await Merchant.findBy('id', id)
       
-    console.log(merchant)
+    //console.log(merchant)
     return view.render('merchant.detail', { merchant })
   }
 }

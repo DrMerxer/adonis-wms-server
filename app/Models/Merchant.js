@@ -13,6 +13,8 @@ class Merchant extends Model {
     this.addHook('beforeSave', 'MerchantHook.saveCost')
     this.addHook('afterFind', 'MerchantHook.readFragile')
     this.addHook('afterFind', 'MerchantHook.readSize')
+    this.addHook('beforeSave', 'MerchantHook.saveSize')
+    this.addHook('beforeSave', 'MerchantHook.saveFragile')
   }
 
   cargoes(){

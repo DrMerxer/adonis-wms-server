@@ -24,5 +24,4 @@ class OrderSchema extends Schema {
     this.drop('orders')
   }
 }
-
 module.exports = OrderSchema

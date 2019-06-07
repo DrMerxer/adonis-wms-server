@@ -13,8 +13,8 @@ class CargoAddReferencesSchema extends Schema {
       table.foreign('shelf_id').references('shelves.id')
       table.integer('order_id').unsigned()
       table.foreign('order_id').references('orders.id')
-      table.integer('tag_id').unsigned()
-      table.foreign('tag_id').references('rfids.id')
+      table.integer('rfid_id').unsigned()
+      table.foreign('rfid_id').references('rfids.id')
     })
   }
 
@@ -24,11 +24,11 @@ class CargoAddReferencesSchema extends Schema {
       table.dropForeign('merchant_id')
       table.dropForeign('shelf_id')
       table.dropForeign('order_id')
-      table.dropForeign('tag_id')
+      table.dropForeign('rfid_id')
       table.dropColumn('merchant_id')
       table.dropColumn('shelf_id')
       table.dropColumn('order_id')
-      table.dropColumn('tag_id')
+      table.dropColumn('rfid_id')
     })
   }
 }
