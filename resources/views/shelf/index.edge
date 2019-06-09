@@ -46,6 +46,11 @@
                   <i class="fas fa-trash"></i>
                 </button>
             </a>
+            <a href="/shelves/edit_alias?id={{ shelf.id }}&page={{page}}">
+              <button class="btn">
+                <i class="fas fa-edit"></i>
+              </button>
+          </a>
             <a href="{{route('ShelfController.detail')}}?id={{ shelf.id }}&page={{ page }}">
                 <button class="btn">
                   <i class="fas fa-cubes"></i>

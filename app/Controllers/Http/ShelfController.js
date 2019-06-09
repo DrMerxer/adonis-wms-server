@@ -4,6 +4,7 @@ const Shelf = use('App/Models/Shelf')
 const Cargo = use('App/Models/Cargo')
 const Database = use('Database')
 const Merchant = use('App/Models/Merchant')
+const { validate } = use('Validator')
 class ShelfController {
   async index({request, view}){
     const page = request.input('page')
@@ -92,11 +93,52 @@ class ShelfController {
 
   async create({request, response, view}){
     const page = request.input('page')
-    
+    const warehouses = await Warehouse.all()
+    const warehouse = warehouses.toJSON()
+    return view.render('shelf.create', {page, warehouse})
   }
 
   async store({request, session, response}){
+    const rules = {
+      alias:"required|min:1|max:255",
+      size:"required",
+      warehouse_id:"required"
+    }
 
+    const validation = await validate(request.all(), rules)
+
+    if(validation.fails()){
+      session
+        .withErrors(validation.messages())
+        .flashAll()
+        return response.redirect('back')
+    }
+    const shelf = request.only(['alias', 'size', 'type', 'capacity','warehouse_id'])
+    const store = await Shelf.create(shelf)
+    
+    const page = request.input('page')
+    return response.redirect('/shelves?page=' + page)
+  }
+
+  async edit_alias({request, response, view}){
+    const page = request.input('page')
+    const id = request.input('id')
+    const shelf = await Shelf.findOrFail(id)
+    const shelf_obj = shelf.toJSON()
+    const old_alias = shelf_obj.alias
+    console.log(old_alias)
+    return view.render('shelf.edit', {page, id, old_alias})
+  }
+
+  async update({request, response}){
+    const page = request.input('page')
+    const id = request.input('id')
+    const alias = request.input('alias')
+
+    const shelf = await Shelf.findOrFail(id)
+    shelf.merge({"alias":alias})
+    shelf.save()
+    return response.redirect('/shelves?page=' + page)
   }
 }
 
