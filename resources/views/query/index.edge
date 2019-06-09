@@ -1,0 +1,35 @@
+@layout('layouts.main')
+@section('content')
+<div class="container adjust-content-center">
+  <h2 class="my-5 text-center">货物查询</h2>
+</div>
+<div class="container justify-content-center">
+  <form action="{{ route('QueryController.search') }}" method="post">
+    {{ csrfField() }}
+    <div class="row">
+      <div class="col-md-10">
+        <input type="text" name="search_text" class="form-control" placeholder="搜索🔍">
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">搜索</button>
+      </div>
+
+    </div>
+    <div class="form-group row justify-content-left" style="padding-top:3vh">
+        <label class="col-md-2">
+          <input type="radio" name="type" value="shelf"> 按货架代号
+        </label>
+        <label class="col-md-2">
+          <input type="radio" name="type" value="merchant"> 按商品名称
+        </label>
+        <label class="col-md-2">
+          <input type="radio" name="type" value="order"> 按订单编号
+        </label>
+        <label class="col-md-2">
+          <input type="radio" name="type" value="warehouse"> 按仓库代号
+        </label>
+      </div>
+
+  </form>
+</div>
+@endsection

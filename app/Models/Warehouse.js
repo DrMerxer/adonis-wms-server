@@ -15,6 +15,12 @@ class Warehouse extends Model {
             'App/Models/Shelf'
         )
     }
+
+    cargoes(){
+      return this.manyThrough(
+        'App/Models/Shelf', 'cargo'
+      )
+    }
 }
 
 module.exports = Warehouse

@@ -25,7 +25,7 @@ class ShelfController {
       .where('shelf_id', id)
       .where('isdel', false)
       .paginate(page, perPage)
-    return view.render('shelf.detail', {...cargo.toJSON()})
+    return view.render('shelf.detail', {...cargo.toJSON(), id})
   }
 
   async destroy({request, response}){

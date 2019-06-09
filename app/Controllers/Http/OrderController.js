@@ -57,7 +57,18 @@ class OrderController {
   }
 
   async show ({ params, request, response, view }) {
-    
+    const id = request.input('id')
+    const page = request.input('page')
+    const result = {}
+    result.id = id
+    const order = await Order.find(id)
+    const merchant = await Merchant.find(order.merchant_id)
+    const ship = await Ship.findBy('order_id', id)
+    result.company = order.company
+    result.merchant_name = merchant.name
+    result.exp = ship.ship_id
+    result.barcode = merchant.barcode
+    return view.render('order.detail', {order: result, page,id})
   }
 
   async update ({ params, request, response }) {

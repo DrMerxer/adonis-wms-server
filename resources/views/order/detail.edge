@@ -1,0 +1,42 @@
+@layout('layouts.main')
+@section('content')
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:2vh">
+      <h1>#{{ id }} 订单详情</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="divider"></div>
+  </div>
+  <div class="row" style="padding-top: 2vh">
+    <div class="container">
+      <a href="{{route('OrderController.index')}}?page={{ page }}"><button class="btn btn-primary">返回订单列表</button></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container" style="padding-top:2vh">
+      <table class="table table-bordered table-responseive">
+        <thead>
+          <tr>
+            <th>订单ID</th>
+            <th>条形码</th>
+            <th>物流编号</th>
+            <th>供应商</th>
+            <th>商品名称</th>
+          </tr>
+        </thead>
+        <tr>
+          <th>{{order.id}}</th>
+          <th>{{order.barcode}}</th>
+          <th>{{order.exp}}</th>
+          <th>{{order.company}}</th>
+          <th>{{order.merchant_name}}</th>
+        <tr>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+@endsection

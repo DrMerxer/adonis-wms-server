@@ -43,6 +43,11 @@
                   <i class="fas fa-trash"></i>
                 </button>
             </a>
+            <a href="/orders/detail?id={{ order.id }}&page={{page}}">
+              <button class="btn">
+                <i class="fas fa-info"></i>
+              </button>
+          </a>
             <a href="{{route('OrderController.edit')}}?id={{ order.id }}&page={{ page }}">
               <button class="btn">
                 <i class="fas fa-edit"></i>
