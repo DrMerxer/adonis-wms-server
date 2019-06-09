@@ -48,9 +48,6 @@ Route.get('users/profile', 'UserController.profile')
 Route.post('users/update_password', 'UserController.update')
 Route.get('users/delete', 'UserController.destroy')
 
-Route
-  .get('gun/arrive', 'GunController.arrive')
-
 Route.get('merchants/create', 'MerchantController.create')
 Route.get('merchants/delete', 'MerchantController.destroy')
 Route.get('merchants/edit', 'MerchantController.edit')
@@ -89,3 +86,7 @@ Route.post('shelves/update', 'ShelfController.update')
 
 Route.get('query', 'QueryController.index')
 Route.post('search', 'QueryController.search')
+
+Route.post('gun/arrive', 'GunController.arrive')
+Route.post('gun/check', 'GunController.check')
+Route.post('gun/departure', 'GunController.departure')
