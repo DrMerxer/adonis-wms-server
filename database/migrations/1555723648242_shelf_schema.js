@@ -21,6 +21,7 @@ class ShelfSchema extends Schema {
       table.integer('existing').notNullable().defaultTo(0)
       //Fragile: 0.Normal Cargo 1. Fragile
       table.boolean('type').notNullable()
+      table.boolean('isdel').notNullable().defaultTo(false)
       // table.integer('warehouse_id').unsigned()
       // table.foreign('warehouse_id').references('warehouses.id')
     })

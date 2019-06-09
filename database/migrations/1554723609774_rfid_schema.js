@@ -12,6 +12,7 @@ class RfidSchema extends Schema {
       table.string('tagid').notNullable().unique()
       //status: 0. normal 1.broken
       table.integer('status').notNullable().defaultTo(0)
+      table.boolean('isdel').notNullable().defaultTo(false)
     })
   }
 

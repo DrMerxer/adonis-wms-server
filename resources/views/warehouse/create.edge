@@ -1,0 +1,24 @@
+@layout('layouts.main')
+@section('content')
+@include('partial.card.header')
+<div class="container">
+  <h2>创建仓库</h2>
+</div>
+<div class="container" style="padding-top:3vh">
+  <form action="{{ route('WarehouseController.store')}}?page={{ page }} " method="POST">
+    <div class="container">
+      @!component('components.form.input', {
+        name: 'alias',
+        label: '仓库代号',
+        placeholder: '输入仓库代号',
+        getErrorFor,
+        hasErrorFor,
+        old
+        })
+    </div>
+    {{ csrfField() }}
+    <button type="submit" class="btn btn-primary">提交更改</button>
+  </form>
+</div>
+@include('partial.card.footer')
+@endsection

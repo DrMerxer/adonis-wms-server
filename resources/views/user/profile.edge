@@ -1,0 +1,50 @@
+@layout('layouts.main')
+@section('content')
+
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+    <h1 class="my-5">{{ user.username }}的用户资料</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+      <a href="{{route('UserController.change_password')}}?id={{user.id}}">
+        <button class="btn btn-primary">修改密码</button>
+      </a>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="container d-flex justify-content-center" style="padding-top:3vh">
+        <table class="table">
+            <tr>
+              <th scope="row">ID</th>
+              <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Email</th>
+              <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+              <th scope="row">性别</th>
+              <td>{{ user.gender }}</td>
+            </tr>
+            <tr>
+              <th scope="row">生日</th>
+              <td>{{ user.birth }}</td>
+            </tr>
+            <tr>
+              <th scope="row">级别</th>
+              <td>{{ user.level }}</td>
+            </tr>
+            <tr>
+              <th scope="row">工作的仓库</th>
+              <td>{{ warehouse_alias }}</td>
+            </tr>
+          </table>
+    </div>
+    
+  </div>
+</div>
+
+@endsection

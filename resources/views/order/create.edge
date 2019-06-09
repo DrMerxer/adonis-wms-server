@@ -47,6 +47,22 @@
     hasErrorFor,
     old
     })
+    @!component('components.form.input',{
+      name:'ship_id',
+      label:'物流编号',
+      placeholder: '输入物流编号',
+      getErrorFor,
+      hasErrorFor,
+      old
+    })
+    @!component('components.form.input',{
+      name:'addr',
+      label:'地址',
+      placeholder: '输入物流目标/源地址信息',
+      getErrorFor,
+      hasErrorFor,
+      old
+    })
     {{ csrfField() }}
     <button type="submit" class="btn btn-primary">提交更改</button>
   </form>

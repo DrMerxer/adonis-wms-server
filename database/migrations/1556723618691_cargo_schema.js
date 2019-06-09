@@ -9,9 +9,7 @@ class CargoSchema extends Schema {
       table.increments()
       table.timestamps()
 
-      // table.string('barcode').notNullable().unique()
-      // table.foreign('barcode').references('merchants.barcode')
-      table.boolean('ischecked')
+      table.boolean('ischecked').notNullable()
       // table.integer('shelf_id').unsigned().notNullable()
       // table.foreign('shelf_id').references('shelves.id')
       table.boolean('isdel').notNullable() //status: 0. Down 1. Up

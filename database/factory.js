@@ -18,7 +18,6 @@ const Hash = use('Hash')
 
 const User = use('App/Models/User')
 const Cargo = use('App/Models/Cargo')
-const Finance = use('App/Models/Finance')
 const Merchant = use('App/Models/Merchant')
 const Order = use('App/Models/Order')
 const Rfid = use('App/Models/Rfid')
@@ -67,7 +66,6 @@ Factory.blueprint('App/Models/Merchant', async (faker) => {
 Factory.blueprint('App/Models/Warehouse', async (faker) => {
   return {
     alias: faker.word(),
-    balance: faker.integer({min:12100, max:9999900})
   }
 })
 Factory.blueprint('App/Models/Shelf', async (faker) => {
@@ -79,7 +77,7 @@ Factory.blueprint('App/Models/Shelf', async (faker) => {
     }),
     capacity: faker.integer({min:1, max:4})*10,
     existing: 0,
-    type: 0,
+    type: faker.bool({likelihood:30}),
     
   }
 })
@@ -97,9 +95,6 @@ Factory.blueprint('App/Models/Ship', async (faker) => {
       pool:'1234567890',
       length:'12'
     }),
-    type: faker.integer({
-      min:0, max:2
-    }),
     addr: fakerjs.address.state() + " " + fakerjs.address.city() + " " + fakerjs.address.streetName() + " " + fakerjs.address.secondaryAddress()
   }
 })
@@ -109,11 +104,7 @@ Factory.blueprint('App/Models/Cargo', async (faker) => {
     isdel: false
   }
 })
-Factory.blueprint('App/Models/Finance', async (faker) => {
-  return {
-    money: 0
-  }
-})
+
 // async function makebrew() {
 //   try {
 //     await Factory

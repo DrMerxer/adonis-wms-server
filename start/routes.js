@@ -41,10 +41,15 @@ Route
 Route
   .get('users/create', ({ response }) => response.route('signup'))
 
+Route.get('users/udpate_level', 'UserController.update_level')
+Route.post('users/level', 'UserController.level')
+Route.get('users/change_password', 'UserController.change_password')
+Route.get('users/profile', 'UserController.profile')
+Route.post('users/update_password', 'UserController.update')
+Route.get('users/delete', 'UserController.destroy')
+
 Route
   .get('gun/arrive', 'GunController.arrive')
-
-// Route.get('mdetail', ({ response }) => response.route('mdetail'))
 
 Route.get('merchants/create', 'MerchantController.create')
 Route.get('merchants/delete', 'MerchantController.destroy')
@@ -62,3 +67,10 @@ Route.get('orders/create', 'OrderController.create')
 Route.post('orders/store', 'OrderController.store')
 Route.get('orders/edit', 'OrderController.edit')
 Route.post('orders/update', 'MerchantController.update')
+
+Route.get('warehouses', 'WarehouseController.index')
+Route.get('warehouses/create', 'WarehouseController.create')
+Route.post('warehouses/store', 'WarehouseController.store')
+Route.get('warehouses/edit', 'WarehouseController.edit')
+Route.post('warehouses/update', 'WarehouseController.update')
+Route.get('warehouses/delete', 'WarehouseController.destroy')

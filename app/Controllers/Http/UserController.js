@@ -19,6 +19,14 @@ class UserController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    const page = request.input('page')
+    const perPage = 15
+    const users = await User
+      .query()
+      .where('isdel', false)
+      .paginate(page, perPage)
+
+    return view.render('user.index', {...users.toJSON()})
   }
 
   /**
@@ -102,8 +110,35 @@ class UserController {
    * @param {View} ctx.view
    */
   async edit ({ params, request, response, view }) {
+    
   }
 
+  async profile({ request, view }) {
+    const id = request.input('id')
+    const user = await User.findOrFail(id)
+    const warehouse = await user.warehouse().select('alias').fetch()
+    const warehouse_alias = warehouse.alias
+    console.log(warehouse_alias)
+    return view.render('user.profile', {id, user, warehouse_alias})
+  }
+
+  async update_level({request, view}){
+    const id = request.input('id')
+    const user = await User.findOrFail(id)
+    const page = request.input('page')  
+    return view.render('user.level', {user, page})
+  }
+
+  async level({request, response}){
+    const page = request.input('page')
+    const id = request.input('id')
+    const level = request.input('level')
+    const update = {"level":level}
+    const users = await User.findOrFail(id)
+    users.merge(update)
+    users.save()
+    return response.redirect('/users?page='+page)
+  }
   /**
    * Update user details.
    * PUT or PATCH users/:id
@@ -112,7 +147,31 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ session, request, response }) {
+    const id = request.input('id')
+    const password = request.input('password')
+    const rules = {
+      password: 'required|min:8|max:20',
+   }
+
+   const validation = await validate(request.all(), rules)
+
+   if (validation.fails()){
+      session
+         .withErrors(validation.messages())
+         .flashAll()
+      return response.redirect('back')
+   }
+    const user = await User.findOrFail(id)
+    user.merge({"password":password})
+    user.save()
+    return response.redirect('/')
+  }
+
+  async change_password({request, session, view}){
+    const id = request.input('id')
+    const user = await User.findOrFail(id)
+    return view.render('user.change_password', {user})
   }
 
   /**
@@ -124,6 +183,12 @@ class UserController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    const id = request.input('id')
+    const page = request.input('page')
+    const user = await User.findOrFail(id)
+    user.merge({'isdel': true})
+    user.save()
+    return response.redirect('/users?page=' + page)
   }
 }
 

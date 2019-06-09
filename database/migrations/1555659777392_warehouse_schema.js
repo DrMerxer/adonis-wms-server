@@ -10,7 +10,7 @@ class WarehouseSchema extends Schema {
       table.timestamps()
 
       table.string('alias').unique()
-      table.integer('balance').notNullable()
+      table.boolean('isdel').notNullable().defaultTo(false)
     })
   }
 

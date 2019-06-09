@@ -64,12 +64,6 @@ class DatabaseSeeder {
 
       await rfid.cargo().save(cargo)
 
-      const finance = await Factory
-        .model('App/Models/Finance')
-        .make()
-
-      await order.finance().save(finance)
-
       i+=1
     }
 

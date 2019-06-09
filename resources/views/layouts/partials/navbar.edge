@@ -8,23 +8,29 @@
     <ul class="navbar-nav mr-auto">
       @loggedIn
       <li class="nav-item">
-        <a class="nav-link" href="home">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="home">仪表台<span class="sr-only"></span></a>
       </li>
       @if(auth.user.level > 2)
       <li class="nav-item">
-        <a href="#" class="nav-link">Finance</a>
+        <a href="warehouses" class="nav-link">仓库管理</a>
       </li>
       <li class="nav-item">
-      <a href="merchants" class="nav-link">Merchant</a>
+        <a class="nav-link" href="users">用户管理<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="home">货架管理<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+      <a href="merchants" class="nav-link">商品管理</a>
       </li>
       @endif
       @if(auth.user.level > 1)
       <li class="nav-item">
-        <a class="nav-link" href="orders">Orders</a>
+        <a class="nav-link" href="orders">订单管理</a>
       </li>
       @endif
       <li class="nav-item">
-        <a class="nav-link" href="#">Queries</a>
+        <a class="nav-link" href="#">货物查询</a>
       </li>
       @endloggedIn
     </ul>
@@ -36,7 +42,7 @@
           {{ auth.user.username }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{{ route('UserController.show', {id: auth.user.id }) }}">Profile</a>
+        <a class="dropdown-item" href="{{ route('UserController.profile') }}?id={{ auth.user.id }}">Profile</a>
           <div class="dropdown-divider"></div>
           <form action="{{ route('logout') }}" method="post">
             {{ csrfField() }}

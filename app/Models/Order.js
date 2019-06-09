@@ -11,17 +11,13 @@ class Order extends Model {
     this.addHook('afterFind', 'OrderHook.readType')
     this.addHook('beforeSave', 'OrderHook.saveStatus')
     this.addHook('afterFind', 'OrderHook.readStatus')
+    this.addHook('afterPaginate', 'OrderHook.readTypes')
+    this.addHook('afterPaginate', 'OrderHook.readStatuses')
   }
 
   merchant() {
     return this.belongsTo(
       'App/Models/Merchant'
-    )
-  }
-
-  finance() {
-    return this.hasOne(
-      'App/Models/Finance'
     )
   }
 

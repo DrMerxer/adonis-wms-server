@@ -1,6 +1,7 @@
 'use strict'
 const Order = use('App/Models/Order')
 const Merchant = use('App/Models/Merchant')
+const Ship = use('App/Models/Ship')
 const {validate} = use('Validator')
 class OrderController {
   async index({ request, params, view }){
@@ -16,14 +17,9 @@ class OrderController {
   }
 
   async create({ request, response, view}) {
-    const merchants = await Merchant
-      .query()
-      .where('isdel', false)
-      .fetch()
-    const merchant = merchants.toJSON()
-    const page = request.input('id')
+    const page = request.input('page')
     //console.log(merchant)
-    return view.render('order.create', {merchant, page})
+    return view.render('order.create', {page})
   }
 
   async store({ request, response, session }){
@@ -31,7 +27,9 @@ class OrderController {
       type: 'required|integer|min:0|max:1',
       status: 'required|integer|min:0|max:1',
       company: 'required|min:1|max:255',
-      amount: 'required|integer'
+      amount: 'required|integer',
+      ship_id: 'required|min:8|max:30',
+      addr: 'required|min:5|max:255'
     }
 
     const validation = await validate(request.all(), rules)
@@ -44,9 +42,11 @@ class OrderController {
     }
 
     var newOrder = request.only(['merchant_id', 'amount', 'type', 'status', 'company'])
-    console.log(newOrder)
+    var newShip = request.only(['ship_id', 'addr'])
     const order = await Order.create( newOrder )
-
+    newShip.order_id = order.id
+    console.log(newShip)
+    const ship = await Ship.create(newShip)
     return response.redirect('/orders')
   }
 
@@ -55,12 +55,13 @@ class OrderController {
   }
 
   async update ({ params, request, response }) {
-    const {id, page} = request.input('id', 'page')
+    const page = request.input('page')
     const rules = {
       company: 'required|min:1|max:255',
       type:'required',
       status:'required',
-      amount:'required|integer'  
+      amount:'required|integer',
+      merchant_id:'required'  
     }
 
     const validation = await validate(request.all(), rules)
@@ -76,14 +77,17 @@ class OrderController {
       'company', 
       'type',
       'status',
-      'amount'
+      'amount',
+      'merchant_id'
     ])
+    const createOrder = await Order.create(newMerchant)
+    return response.redirect('/orders?page='+ page)
   }
 
   async destroy({request, response}) {
     const id = request.input('id')
     const page = request.input('page')
-    const updateIsdel = {"isdel":id}
+    const updateIsdel = {"isdel":true}
     const delOrder = await Order.findOrFail(id)
     delOrder.merge(updateIsdel)
     delOrder.save()

@@ -1,0 +1,32 @@
+@layout('layouts.main')
+@section('content')
+@include('partial.card.header')
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+      <h2>修改仓库代号：{{ warehouse.id }} - {{ warehouse.alias }}</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+      <form action="{{ route('WarehouseController.update')}}?id={{ id }}&page={{ page }}" method="POST">
+        <div class="container">
+          <div class="form-group">
+            <label for="id">仓库ID</label>
+            <input type="number" disabled class="form-control  " value="{{ warehouse.id }}" name="id" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="alias">仓库代号</label>
+            <input type="text" class="form-control  " value="{{ warehouse.alias }}" name="alias"
+              placeholder="输入仓库代号，尽可能简短">
+          </div>  
+        </div>
+        {{ csrfField() }}
+        <button type="submit" class="btn btn-primary">提交更改</button>
+      </form>
+    </div>
+  </div>
+</div>
+@include('partial.card.footer')
+@endsection

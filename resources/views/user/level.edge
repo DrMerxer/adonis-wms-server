@@ -1,0 +1,30 @@
+@layout('layouts.main')
+@section('content')
+@include('partial.card.header')
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+      <h2>修改用户级别：{{ user.username }}</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container" style="padding-top:3vh">
+      <form action="{{ route('UserController.level')}}?id={{ user.id }}&page={{ page }}" method="POST">
+        <div class="form-group">
+          <label for="level">权限级别</label>
+          <div>
+            <input type="radio" name="level" value="1"> 1 <br>
+            <input type="radio" name="level" value="2"> 2 <br>
+            <input type="radio" name="level" value="3"> 3 <br>
+          </div>
+        {{ csrfField() }}
+        <div style="padding-top:3vh">
+          <button type="submit" class="btn btn-primary">提交更改</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@include('partial.card.footer')
+@endsection

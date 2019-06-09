@@ -9,6 +9,12 @@ class Ship extends Model {
           'App/Models/Order'
       )
   }
+
+  cargo(){
+    return this.hasMany(
+      'App/Models/Cargo'
+    )
+  }
 }
 
 module.exports = Ship

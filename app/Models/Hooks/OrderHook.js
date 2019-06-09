@@ -1,6 +1,7 @@
 'use strict'
 
 const OrderHook = exports = module.exports = {}
+const Model = use('Model')
 
 OrderHook.readType = async (order) => {
   if(order){
@@ -32,8 +33,44 @@ OrderHook.saveType = async (order) => {
   }
 }
 
+OrderHook.readTypes = async(orders, meta) => {
+  if(orders){
+    for (var order of orders) {
+      switch (order.type) {
+        case 0:
+          order.type = undefined
+          order.type = "买入"
+        break;
+        case 1:
+          order.type = undefined
+          order.type = "卖出"
+        break;
+      }
+    }
+    console.log(orders[0].type)
+    console.log(meta)
+  }
+}
+
+OrderHook.readStatuses = async (statuses, meta) => {
+  if(statuses){
+    for (var order of statuses){
+      switch (order.status) {
+        case 0:
+          order.status = undefined
+          order.status = "正在进行"
+        break;
+        case 1:
+          order.status = undefined
+          order.status = "已完成"
+        break;
+      }
+    }
+  }
+}
+
 OrderHook.readStatus = async (order) => {
-  if(order){
+  if(order.status){
     switch (order.status) {
       case 0:
         order.status = undefined

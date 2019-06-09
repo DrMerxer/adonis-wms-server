@@ -15,6 +15,9 @@ class User extends Model {
      * it to the database.
      */
     this.addHook('beforeSave', 'UserHook.hashPassword')
+    this.addHook('beforeSave', 'UserHook.saveGender')
+    this.addHook('afterFind', 'UserHook.readGender')
+    this.addHook('afterPaginate', 'UserHook.readGenders')
   }
 
   /**

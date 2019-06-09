@@ -28,6 +28,12 @@ class Cargo extends Model {
       'App/Models/Rfid'
     )
   }
+
+  ship(){
+    return this.belongsTo(
+      'App/Models/Ship'
+    )
+  }
 }
 
 
