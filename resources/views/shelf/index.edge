@@ -1,0 +1,74 @@
+@layout('layouts.main')
+@section('content')
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:2vh">
+      <h1>货架</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="divider"></div>
+  </div>
+  <div class="row" style="padding-top: 2vh">
+    <div class="container">
+      <a href="{{route('ShelfController.create')}}?page={{ page }}"><button class="btn btn-primary">创建货架</button></a>
+      <a href="{{route('ShelfController.index')}}/refresh"></a>
+      <button class="btn btn-light">刷新</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container" style="padding-top:2vh">
+      <table class="table table-bordered table-responseive">
+        <thead>
+          <tr>
+            <th>货架ID</th>
+            <th>货架代号</th>
+            <th>货架容量</th>
+            <th>货架存量</th>
+            <th>货架尺寸</th>
+            <th>存储类型</th>
+            <th>所在仓库</th>
+            <th>功能</th>
+          </tr>
+        </thead>
+        @each(shelf in data)
+        <tr>
+          <th>{{shelf.id}}</th>
+          <th>{{shelf.alias}}</th>
+          <th>{{shelf.capacity}}</th>
+          <th>{{shelf.existing}}</th>
+          <th>{{shelf.size}}</th>
+          <th>{{shelf.type}}</th>
+          <th><a href="/warehouses">{{shelf.warehouse_id}}</a></th>
+          <th>
+            <a href="/shelves/delete?id={{ shelf.id }}&page={{page}}">
+                <button class="btn">
+                  <i class="fas fa-trash"></i>
+                </button>
+            </a>
+            <a href="{{route('ShelfController.detail')}}?id={{ shelf.id }}&page={{ page }}">
+                <button class="btn">
+                  <i class="fas fa-cubes"></i>
+                </button>
+            </a>
+          </th>
+        <tr>
+          @endeach
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container" style="padding-top: 2vh">
+      @!component('components.pagination',
+      {
+      total,
+      perPage,
+      page,
+      lastPage
+      })
+    </div>
+  </div>
+</div>
+</div>
+
+@endsection

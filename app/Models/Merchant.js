@@ -23,6 +23,12 @@ class Merchant extends Model {
     )
   }
 
+  cargo(){
+    return this.manyThrough(
+      'App/Models/Order', 'cargo'
+    )
+  }
+
 
 
 }

@@ -92,6 +92,26 @@ class MerchantController {
     return response.redirect('/merchants')
   }
 
+  async refresh({response}){
+    const all = await Merchant.all()
+    const all_object = all.toJSON()
+    for(var obj of all_object){
+      const merchant = await Merchant.find(obj.id)
+      const orders = await merchant.orders().fetch()
+      const orders_obj = orders.toJSON()
+      var amount = 0
+      for(var order of orders_obj){
+        amount += order.amount
+      }
+      console.log(amount)
+      merchant.merge({'amount':amount})
+      merchant.save()
+      return response.redirect('/merchants')
+    }
+
+    return response.redirect('/merchants')
+  }
+
   /**
    * Display a single merchant.
    * GET merchants/:id

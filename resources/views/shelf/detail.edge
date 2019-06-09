@@ -1,0 +1,62 @@
+@layout('layouts.main')
+@section('content')
+<div class="col">
+  <div class="row">
+    <div class="container" style="padding-top:2vh">
+      <h1>货架内容</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="divider"></div>
+  </div>
+  <div class="row" style="padding-top: 2vh">
+    <div class="container">
+      <a href="{{route('ShelfController.index')}}?page={{ page }}"><button class="btn btn-primary">返回货架列表</button></a>
+      <button class="btn btn-light" onclick="window.location.reload()">刷新</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container" style="padding-top:2vh">
+      <table class="table table-bordered table-responseive">
+        <thead>
+          <tr>
+            <th>货物ID</th>
+            <th>订单号</th>
+            <th>添加时间</th>
+            <th>检查情况</th>
+            <th>功能</th>
+          </tr>
+        </thead>
+        @each(cargo in data)
+        <tr>
+          <th>{{cargo.id}}</th>
+          <th>{{cargo.order_id}}</th>
+          <th>{{cargo.created_at}}</th>
+          <th>{{cargo.ischecked}}</th>
+          <th>
+            <a href="{{route('CargoController.detail')}}?id={{ shelf.id }}&page={{ page }}">
+                <button class="btn">
+                  <i class="fas fa-info"></i>
+                </button>
+            </a>
+          </th>
+        <tr>
+          @endeach
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container" style="padding-top: 2vh">
+      @!component('components.pagination',
+      {
+      total,
+      perPage,
+      page,
+      lastPage
+      })
+    </div>
+  </div>
+</div>
+</div>
+
+@endsection

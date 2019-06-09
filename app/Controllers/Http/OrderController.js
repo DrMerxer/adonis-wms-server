@@ -19,7 +19,13 @@ class OrderController {
   async create({ request, response, view}) {
     const page = request.input('page')
     //console.log(merchant)
-    return view.render('order.create', {page})
+    const merchants = await Merchant
+      .query()
+      .where('isdel', false)
+      .fetch()
+
+    const merchant = merchants.toJSON()
+    return view.render('order.create', {page, merchant})
   }
 
   async store({ request, response, session }){

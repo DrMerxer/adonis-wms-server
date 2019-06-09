@@ -1,0 +1,35 @@
+@layout('layouts.main')
+@section('content')
+@include('partial.card.header')
+<div class="container" style="padding-left:3vh">
+  <h1 class="my-5">非空的货架！</h1>
+</div>
+<div class="container" style="padding-top:3vh">
+  <div class="container"><p>当前货架仍有 {{ stock.existing }} 个货物，无法删除。将货物手动移动到其他的货架继续删除。</p></div>
+  <form action="{{ route('ShelfController.move_cargo') }}?original_shelf={{ stock.id }}" method="post">
+      <div class="container">
+          <div class="form-group">
+              <label for="target_shelf">可用的货架</label>
+              <div>
+                <select class="combobox" name="target_shelf">
+                  @each(shelf in selection)
+                  <option value="{{ shelf.id }}">{{ shelf.alias }} : 剩余货位 {{ shelf.empty }}</option>
+                  @endeach
+                </select>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+        @if(disable)
+          <p style="color:crimson">没有可用的货架！</p>
+          <button disabled="disabled" class="btn btn-danger">无法移动商品</button>
+        @else
+          <p style="color:crimson">移动之后不可撤销，请认真考虑</p>
+          {{ csrfField() }}
+          <button class="btn btn-dark" type="submit">移动商品到目标货架</button>
+        @endif
+      </div>
+  </form>
+</div>
+@include('partial.card.footer')
+@endsection

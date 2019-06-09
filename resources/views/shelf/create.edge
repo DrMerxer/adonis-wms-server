@@ -1,0 +1,52 @@
+@layout('layouts.main')
+@section('content')
+@include('partial.card.header')
+<div class="container">
+  <h2>创建货架</h2>
+</div>
+<div class="container" style="padding-top:3vh">
+  <form action="{{ route('ShelfController.store') }}" method="POST">
+    <div class="container">
+      @!component('components.form.input', {
+        name: 'alias',
+        label: '货架代号',
+        placeholder: '货架代号不要过长，尽量简明易懂',
+        getErrorFor,
+        hasErrorFor,
+        old
+        })
+        @!component('components.form.input', {
+        type:'number',
+        name: 'amount',
+        label: '货架容量',
+        placeholder: '对应可容纳货物尺寸的容量',
+        getErrorFor,
+        hasErrorFor,
+        old
+        })
+        <div class="form-group">
+          <label for="size">可容纳货物尺寸</label>
+          <div>
+            <input type="radio" name="size" value="1"> 中 <br>
+            <input type="radio" name="size" value="0"> 小 <br>
+            <input type="radio" name="size" value="2"> 大 <br>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="warehouse_id">
+            <div>
+              <select class="combobox" name="warehouse_id">
+                @each(warehouse in warehouses)
+                  <option value="{{ warehouse.id }}">{{ warehouse.alias }}</option>
+                @endeach
+              </select>
+            </div>
+          </label>
+        </div>
+    </div>
+    {{ csrfField() }}
+    <button type="submit" class="btn btn-primary">提交更改</button>
+  </form>
+</div>
+@include('partial.card.footer')
+@endsection
