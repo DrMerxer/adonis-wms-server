@@ -57,7 +57,6 @@ class UserController {
          password: 'required|min:8|max:20',
          email: 'required|email|unique:users',
          gender: 'required|integer',
-         level: 'required|min:1|max:3',
          birth: 'required|date'
       }
 
@@ -75,8 +74,8 @@ class UserController {
             'email',
             'birth',
             'gender',
-            'level',
-            'password'
+            'password',
+            'warehouse_id'
          ])
       console.log(newUser)
       const user = await User.create(newUser)

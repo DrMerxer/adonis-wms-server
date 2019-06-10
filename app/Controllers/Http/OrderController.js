@@ -71,14 +71,14 @@ class OrderController {
     return view.render('order.detail', {order: result, page,id})
   }
 
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, session }) {
     const page = request.input('page')
+    const id = request.input('id')
     const rules = {
       company: 'required|min:1|max:255',
       type:'required',
       status:'required',
-      amount:'required|integer',
-      merchant_id:'required'  
+      amount:'required|integer'
     }
 
     const validation = await validate(request.all(), rules)
@@ -90,14 +90,15 @@ class OrderController {
       return response.redirect('back')
     }
 
-    var newMerchant = request.only([
+    var newOrder = request.only([
       'company', 
       'type',
       'status',
       'amount',
-      'merchant_id'
     ])
-    const createOrder = await Order.create(newMerchant)
+    const targetOrder = await Order.find(id)
+    targetOrder.merge(newOrder)
+    targetOrder.save()
     return response.redirect('/orders?page='+ page)
   }
 

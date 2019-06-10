@@ -30,6 +30,10 @@ class QueryController {
           .findBy('alias', content)
         result = await order.cargo().fetch() 
         break;
+      case 'merchant':
+        const merchant = await Merchant.findBy('name', content)
+        result = await merchant.cargo().fetch()
+        break;
     }
     const result_obj = result.toJSON()
     return view.render('query.search_result', {result_obj})

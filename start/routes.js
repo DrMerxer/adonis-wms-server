@@ -63,7 +63,7 @@ Route.get('orders/delete', 'OrderController.destroy')
 Route.get('orders/create', 'OrderController.create')
 Route.post('orders/store', 'OrderController.store')
 Route.get('orders/edit', 'OrderController.edit')
-Route.post('orders/update', 'MerchantController.update')
+Route.post('orders/update', 'OrderController.update')
 Route.get('orders/detail', 'OrderController.show')
 
 Route.get('warehouses', 'WarehouseController.index')
