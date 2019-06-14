@@ -83,6 +83,7 @@ Route.get('shelves/create', 'ShelfController.create')
 Route.post('shelves/store', 'ShelfController.store')
 Route.get('shelves/edit_alias', 'ShelfController.edit_alias')
 Route.post('shelves/update', 'ShelfController.update')
+Route.get('shelves/detail_cargo', 'ShelfController.detail_cargo')
 
 Route.get('query', 'QueryController.index')
 Route.post('search', 'QueryController.search')

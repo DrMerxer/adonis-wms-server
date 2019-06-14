@@ -58,14 +58,11 @@ class GunController {
             target_shelf.merge({"existing":target_shelf.existing + 1})
             target_shelf.save()
             const cargo = await Cargo.create(new_cargo)
+            return {"result": "Cargo added at Shelf "+ target_shelf.alias +"! "}
           } else {
             return {
               "result": "Order full!"
             }
-          }
-          //Check order completion status
-          return {
-            "result": "Cargo added! "
           }
         } catch (error) {
           console.log(error)

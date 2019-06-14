@@ -28,7 +28,7 @@ class QueryController {
       case 'warehouse':
         const warehouse = await Warehouse
           .findBy('alias', content)
-        result = await order.cargo().fetch() 
+        result = await warehouse.cargoes().fetch() 
         break;
       case 'merchant':
         const merchant = await Merchant.findBy('name', content)

@@ -140,6 +140,12 @@ class ShelfController {
     shelf.save()
     return response.redirect('/shelves?page=' + page)
   }
+
+  async cargo_detail({request, view}){
+    const cargo_id = request.input("cargo_id")
+    const cargo = await Cargo.find(cargo_id)
+    return view.render('shelf/detail_cargo', { cargo })
+  }
 }
 
 module.exports = ShelfController

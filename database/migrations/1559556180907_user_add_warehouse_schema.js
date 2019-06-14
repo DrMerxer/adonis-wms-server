@@ -7,7 +7,7 @@ class UserAddWarehouseSchema extends Schema {
   up () {
     this.table('users', (table) => {
       // alter table
-      table.integer('warehouse_id').unsigned()
+      table.integer('warehouse_id').unsigned().defaultTo(1)
       table.foreign('warehouse_id').references('warehouses.id')
     })
   }

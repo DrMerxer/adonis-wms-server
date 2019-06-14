@@ -34,14 +34,17 @@ class AuthController {
       session
         .withErrors(validation.messages())
         .flashAll()
+
+        return response.redirect('back')
     }
 
     const { email, password } = request.all()
     await auth.attempt(email, password)
-    const usr = await User.findBy('email', email)
-    usr.merge({'last_login': new Date()})
-    usr.save()
-    const user = await auth.getUser()
+    // const usr = await User.findBy('email', email)
+    // usr.merge({'last_login': new Date()})
+    // usr.save()
+    // const user = await auth.getUser()
+    // console.log(user.password)
     return response.redirect('home')
   }
 }
