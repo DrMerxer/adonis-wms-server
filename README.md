@@ -1,6 +1,12 @@
 # Adonis fullstack application
 
 ## Notice
+
+This is my first ever self completed project. And it has been a couple of years I can barely remember how it's worked.
+I save this repositry to record my growth, and don't forget why I *start building*.
+
+❤️ It's my best decision to work on a thing I love, and I will always devoted into building more fantastic things.
+
 ### 1. Database
 When using MySQL 8.x server, execute this SQL sentence in command line, then adonis will be able to connect to the database. 
 
